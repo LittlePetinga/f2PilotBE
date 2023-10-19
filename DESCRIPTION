@@ -2,18 +2,23 @@ Package: f2PilotBE
 Title: f2 Factor Alternative Approach for Pilot Bioequivalence Studies
 Version: 0.0.0.9000
 Authors@R: c(
-    person("Sara Carolina", "Henriques", ,
-           "saracarolinahenriques@gmail.com", 
-           role = c("aut", "cre"),
+    person("Sara Carolina", "Henriques", , "saracarolinahenriques@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-9649-4823")),
-    person("Nuno Elvas", "Silva", ,
-           "nmens@ff.ulisboa.pt", 
-           role = c("aut"),
-           comment = c(ORCID = "0000-0002-9478-0110")))
-Description: Contains functions to calculate the similarity factor f2 based on pharmacokinetic profiles 
-    from pilot bioequivalence studies, as an alternative approach to assess the potential of bioequivalence 
-    of a Test product in comparison to a Reference product in terms of Cmax and AUC.
+    person("Nuno Elvas", "Silva", , "nmens@ff.ulisboa.pt", role = "aut",
+           comment = c(ORCID = "0000-0002-9478-0110"))
+  )
+Description: Contains functions to calculate the similarity factor f2
+    based on pharmacokinetic profiles from pilot bioequivalence studies,
+    as an alternative approach to assess the potential of bioequivalence
+    of a Test product in comparison to a Reference product in terms of
+    Cmax and AUC.
 License: GPL (>= 3)
+URL: https://github.com/LittlePetinga/f2PilotBE
+BugReports: https://github.com/LittlePetinga/f2PilotBE/issues
+Depends:
+    R (>= 3.5.0)
+Imports: 
+    ggplot2
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
