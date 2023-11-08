@@ -37,7 +37,7 @@ The similarity *f*<sub>2</sub> factor, proposed by Moore and Flanner in
 as a function of the reciprocal of mean squared-root transformation of
 the sum of square differences at all points:
 
-$f_{2}=50\cdot\ log \biggl(100\cdot \biggl[1+\frac{1}{n} \sum_{t=1}^{t=n}{(\bar{R}_{t} - \bar{T}_{t})^2} \biggr]^{-0.5} \biggr)$,
+$f_{2}=50\cdot\ log \biggl(100\cdot \biggl[1+\frac{1}{n} \sum_{t=1}^{t=n}{(\bar{R}_{t} - \bar{T}_{t})^2} \biggr]^{-0.5} \biggr)$
 
 where $f_{2}$ is the similarity factor, $n$ is the number of time
 points, and $\bar{R}_{t}$ and $\bar{T}_{t}$ are the mean percentage of
@@ -45,8 +45,8 @@ drug dissolved at time $t$, for Reference and Test products
 respectively.
 
 The *f*<sub>2</sub> similarity factor ranges from 0 (when
-$\bar{R}_{t} - \bar{T}_{t} = 100 \%$, at all $t$) to 100 (when
-$\bar{R}_{t} - \bar{T}_{t} = 0 \%$, at all $t$).
+$\bar{R}_{t} - \bar{T}_{t} = 100 \%$ at all $t$) to 100 (when
+$\bar{R}_{t} - \bar{T}_{t} = 0 \%$ at all $t$).
 
 The figure below presents the distribution of *f*<sub>2</sub> similarity
 factor as a function of mean difference. *f*<sub>2</sub> similarity
