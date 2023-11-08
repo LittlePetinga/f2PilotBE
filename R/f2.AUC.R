@@ -1,35 +1,35 @@
 #' AUC Similarity f2 Factor
 #'
-#' @description `f2.AUC()` calculates the f2 Similarity factor for AUC, from concentration data.
+#' @description `f2.AUC()` calculates the \eqn{f_2} Similarity factor for AUC, from concentration data.
 #'
 #' @param dta Dataframe with concentration data from Test and Reference products.
 #' @param Time Name of the column with time data.
 #' @param Conc Name of the column with concentration data
 #'   (only for stacked data, `Trt.cols = FALSE`).
-#' @param Treatment Name of the column with treatment/formulation information
+#' @param Trt Name of the column with treatment/formulation information
 #'   (only for stacked data, `Trt.cols = FALSE`).
-#' @param Reference Nomenclature in `dta` for the Reference product, defaults to `R`.
+#' @param Ref Nomenclature in `dta` for the Reference product, defaults to `R`.
 #' @param Test Nomenclature in `dta` for the Test product, defaults to `T`.
 #' @param method Method for the AUC calculation:
 #'   * `Linear-Up/Log-Down` (default method): Linear Trapezoidal Rule for for Increasing Values, Log Trapezoidal Rule for Decreasing Values.
-#'   * `Linear/Log`: Linear Trapezoidal Rule for for Values below Cmax, Log Trapezoidal Rule for Values above Cmax.
+#'   * `Linear/Log`: Linear Trapezoidal Rule for for Values below \eqn{C_{\text{max}}}, Log Trapezoidal Rule for Values above \eqn{C_{\text{max}}}.
 #'   * `Linear`: Linear Trapezoidal Rule.
 #' @param Trt.cols A logical value indicating whether treatment is presented in
 #'   columns/pivoted (`TRUE`), or in rows/stacked (`FALSE`).
 #' @param details A logical value indicating whether detailed results will be
-#'   presented (`TRUE`), or if the function only returns the f2 factor
+#'   presented (`TRUE`), or if the function only returns the \eqn{f_2} factor
 #'   (`FALSE`). Defaults to `FALSE`.
 #' @param plot A logical value indicating whether graphical representation will be
 #'   returned. Defaults to `TRUE`.
 #'
 #' @return Returns a list with the following elements:
-#'   * Raw Concentration Data: Dataframe of input concentration data, with
+#'   * `Raw Concentration Data`: Dataframe of input concentration data, with
 #'     treatment information in columns (pivoted).
-#'   * Cumulative AUC: Dataframe with cumulative AUC over time, for Test and Reference product.
-#'   * Reference AUClast: Vector of Reference AUClast.
-#'   * Normalized AUC: dataframe with normalize Test and Reference AUC
-#'     concentrations over time, by Reference AUClast, until Tlast.
-#'   * AUC f2 Factor: dataframe from `f2()` function.
+#'   * `Cumulative AUC`: Dataframe with cumulative AUC over time, for Test and Reference product, calculated from [AUC()] function.
+#'   * `Reference AUClast`: Vector of Reference \eqn{AUC_{\text{0-t}}}.
+#'   * `Normalized AUC`: dataframe with normalize Test and Reference AUC
+#'     concentrations over time, by Reference \eqn{AUC_{\text{0-t}}}, until \eqn{t_{\text{last}}}
+#'   * `AUC f2 Factor`: dataframe from [f2()] function.
 #'
 #' @author Sara Carolina Henriques
 #'
@@ -38,6 +38,11 @@
 #' Alternative Analysis Approaches for the Assessment of Pilot Bioavailability/Bioequivalence Studies.
 #' *Pharmaceutics*. *15*(5), 1430.
 #' [10.3390/pharmaceutics15051430](https://doi.org/10.3390/pharmaceutics15051430).
+#'
+#' Henriques, S.C.; Paixão, P.; Almeida, L.; Silva, N.E. (2023).
+#' Predictive Potential of C~max~ Bioequivalence in Pilot Bioavailability/Bioequivalence Studies,
+#' through the Alternative ƒ~2~ Similarity Factor Method. *Pharmaceutics*. *15*(10), 2498.
+#' [10.3390/pharmaceutics15102498](https://doi.org/10.3390/pharmaceutics15102498).
 #'
 #'
 #' @examples
@@ -51,7 +56,7 @@
 #'
 #' @export
 f2.AUC <- function(dta, Time = 'Time', Conc = 'Conc',
-                   Treatment = 'Treatment', Reference = 'R', Test = 'T',
+                   Trt = 'Treatment', Ref = 'Reference', Test = 'Test',
                    method = 'Linear-Up/Log-Down',
                    Trt.cols = TRUE, details = FALSE, plot = TRUE) {
 
@@ -59,27 +64,27 @@ f2.AUC <- function(dta, Time = 'Time', Conc = 'Conc',
   if (Trt.cols) {
 
     # Rename columns
-    cols <- c(Time, Reference, Test)
+    cols <- c(Time, Ref, Test)
     dta <- dta[,cols]
     names(dta)[names(dta) == Time] <- "Time"
-    names(dta)[names(dta) == Reference] <- "Reference"
+    names(dta)[names(dta) == Ref]  <- "Reference"
     names(dta)[names(dta) == Test] <- "Test"
 
   } else { # If data is stacked
 
     # Rename columns
-    cols <- c(Treatment, Time, Conc)
+    cols <- c(Trt, Time, Conc)
     dta <- dta[,cols]
-    names(dta)[names(dta) == Treatment] <- "Treatment"
+    names(dta)[names(dta) == Trt] <- "Treatment"
     names(dta)[names(dta) == Time] <- "Time"
     names(dta)[names(dta) == Conc] <- "Conc"
 
     # Data from Test
-    dta_T <- dta[dta$Treatment==Test,c('Time','Conc')]
+    dta_T <- dta[dta$Treatment == Test, c('Time','Conc')]
     names(dta_T)[names(dta_T) == 'Conc'] <- 'Test'
 
     # Data from Reference
-    dta_R <- dta[dta$Treatment==Reference,c('Time','Conc')]
+    dta_R <- dta[dta$Treatment == Ref, c('Time','Conc')]
     names(dta_R)[names(dta_R) == 'Conc'] <- 'Reference'
 
     dta <- merge(dta_R,dta_T)
@@ -129,7 +134,6 @@ f2.AUC <- function(dta, Time = 'Time', Conc = 'Conc',
   if (plot) {
 
     # Plot of normalized concentration over time, until Reference Tmax
-    require(ggplot2)
     Norm.plot <- (ggplot(data=Normalized)
                   + geom_line(aes(x = Time,
                                   y = Test,

@@ -9,7 +9,6 @@
 #'
 #' @return Value of the maximum observed concentration.
 #'
-#' @author Sara Carolina Henriques
 #'
 #' @examples
 #' Cmax(dta, 'Conc')

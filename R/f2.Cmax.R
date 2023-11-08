@@ -7,14 +7,14 @@
 #' @param Time Name of the column with time data.
 #' @param Conc Name of the column with concentration data
 #'   (only for stacked data, `Trt.cols = FALSE`).
-#' @param Treatment Name of the column with treatment/formulation information
+#' @param Trt Name of the column with treatment/formulation information
 #'   (only for stacked data, `Trt.cols = FALSE`).
-#' @param Reference Nomenclature in `dta` for the Reference product, defaults to `R`.
+#' @param Ref Nomenclature in `dta` for the Reference product, defaults to `R`.
 #' @param Test Nomenclature in `dta` for the Test product, defaults to `T`.
 #' @param Trt.cols A logical value indicating whether treatment is presented in
 #'   columns/pivoted (`TRUE`), or in rows/stacked (`FALSE`).
 #' @param details A logical value indicating whether detailed results will be
-#'   presented (`TRUE`), or if the function only returns the f2 factor
+#'   presented (`TRUE`), or if the function only returns the \eqn{f_2} factor
 #'   (`FALSE`). Defaults to `FALSE`.
 #' @param plot A logical value indicating whether graphical representation will be
 #'   returned. Defaults to `TRUE`.
@@ -32,7 +32,7 @@
 #' @details Henriques *et al* (2023) proposed to used the \eqn{f_2} factor to assess the similarity on
 #' the rate of drug absorption by normalizing Test and Reference mean concentration-time profiles to the
 #' maximum plasma concentration (\eqn{C_{\text{max}}}) derived from the mean Reference profile, until
-#' Reference Cmax is observed (Reference \eqn{t_{\text{max}}}):
+#' Reference \eqn{C_{\text{max}}} is observed (Reference \eqn{t_{\text{max}}}):
 #' \deqn{
 #'   C_{t}^{N} = 100 \cdot \frac{\overline{C}_{t}}{C_{\text{max R}}}, \text{ where } 0 \leq t \leq
 #'   t_{\text{max R}}
@@ -58,47 +58,52 @@
 #' *Pharmaceutics*. *15*(5), 1430.
 #' [10.3390/pharmaceutics15051430](https://doi.org/10.3390/pharmaceutics15051430).
 #'
+#' Henriques, S.C.; Paixão, P.; Almeida, L.; Silva, N.E. (2023).
+#' Predictive Potential of \eqn{C_{\text{max}}} Bioequivalence in Pilot Bioavailability/Bioequivalence Studies,
+#' through the Alternative \eqn{f_2} Similarity Factor Method. *Pharmaceutics*. *15*(10), 2498.
+#' [10.3390/pharmaceutics15102498](https://doi.org/10.3390/pharmaceutics15102498).
+#'
 #'
 #'
 #' @examples
 #' # Calculate f2 Factor for Cmax
 #' # when treatment data is pivoted:
-#' f2.Cmax(dta, Time = 'Time', Reference = 'R', Test = 'T'
+#' f2.Cmax(dta, Time = 'Time', Ref = 'R', Test = 'T'
 #'
 #' # when treatment data is stacked:
 #' f2.Cmax(dta, Time = 'Time', Conc = 'Conc',
-#'         Treatment = 'Treatment', Reference = 'R', Test = 'T')
+#'         Trt = 'Treatment', Ref = 'R', Test = 'T')
 #'
 #' @export
 f2.Cmax <- function(dta, Time = 'Time', Conc = 'Conc',
-                    Treatment = 'Treatment', Reference = 'R', Test = 'T',
+                    Trt = 'Treatment', Ref = 'R', Test = 'T',
                     Trt.cols = TRUE, details = FALSE, plot = TRUE) {
 
   # If data is pivoted
   if (Trt.cols) {
 
     # Rename columns
-    cols <- c(Time, Reference, Test)
+    cols <- c(Time, Ref, Test)
     dta <- dta[,cols]
     names(dta)[names(dta) == Time] <- "Time"
-    names(dta)[names(dta) == Reference] <- "Reference"
+    names(dta)[names(dta) == Ref]  <- "Reference"
     names(dta)[names(dta) == Test] <- "Test"
 
   } else { # If data is stacked
 
     # Rename columns
-    cols <- c(Treatment, Time, Conc)
+    cols <- c(Trt, Time, Conc)
     dta <- dta[,cols]
-    names(dta)[names(dta) == Treatment] <- "Treatment"
+    names(dta)[names(dta) == Trt] <- "Treatment"
     names(dta)[names(dta) == Time] <- "Time"
     names(dta)[names(dta) == Conc] <- "Conc"
 
     # Data from Test
-    dta_T <- dta[dta$Treatment==Test,c('Time','Conc')]
+    dta_T <- dta[dta$Treatment == Test, c('Time','Conc')]
     names(dta_T)[names(dta_T) == 'Conc'] <- 'Test'
 
     # Data from Reference
-    dta_R <- dta[dta$Treatment==Reference,c('Time','Conc')]
+    dta_R <- dta[dta$Treatment == Ref, c('Time','Conc')]
     names(dta_R)[names(dta_R) == 'Conc'] <- 'Reference'
 
     dta <- merge(dta_R,dta_T)
@@ -146,8 +151,7 @@ f2.Cmax <- function(dta, Time = 'Time', Conc = 'Conc',
 
   if (plot) {
 
-    # Plot of normalized concentration over time, until Reference Tmax
-    require(ggplot2)
+    # Plot of normalized concentration over time, until the Reference Tmax
     Norm.plot <- (ggplot(data=Normalized)
                   + geom_line(aes(x = Time,
                                   y = Test,

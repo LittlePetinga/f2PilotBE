@@ -4,7 +4,7 @@
 \alias{f2}
 \title{Similarity f2 Factor}
 \usage{
-f2(dta, Ref = "Reference", Test = "Test")
+f2(dta, Ref = "R", Test = "T")
 }
 \arguments{
 \item{dta}{Dataframe with data from Test and Reference products.}
@@ -48,14 +48,6 @@ f2(dta, 'R', 'T')
 
 }
 \references{
-Henriques, S.C.; Albuquerque, J.; Paixão, P.; Almeida, L.; Silva, N.E. (2023).
-Alternative Analysis Approaches for the Assessment of Pilot Bioavailability/Bioequivalence Studies.
-\emph{Pharmaceutics}. \emph{15}(5), 1430.
-\href{https://doi.org/10.3390/pharmaceutics15051430}{10.3390/pharmaceutics15051430}.
-
 Moore, J.W.; Flanner, H.H. (1996). Mathematical Comparison of Curves with an Emphasis on in Vitro
 Dissolution Profiles. \emph{Pharm. Technol}. \emph{20}, 64–74.
-}
-\author{
-Sara Carolina Henriques
 }

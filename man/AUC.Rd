@@ -31,6 +31,3 @@ AUC(dta, 't', 'Conc')
 AUC(x, 'Time', 'Concentration', 'Linear/Log')
 
 }
-\author{
-Sara Carolina Henriques
-}

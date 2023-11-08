@@ -23,6 +23,3 @@ Cmax(dta, 'Conc')
 Cmax(x, 'Concentration')
 
 }
-\author{
-Sara Carolina Henriques
-}

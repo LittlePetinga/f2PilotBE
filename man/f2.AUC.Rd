@@ -8,9 +8,9 @@ f2.AUC(
   dta,
   Time = "Time",
   Conc = "Conc",
-  Treatment = "Treatment",
-  Reference = "R",
-  Test = "T",
+  Trt = "Treatment",
+  Ref = "Reference",
+  Test = "Test",
   method = "Linear-Up/Log-Down",
   Trt.cols = TRUE,
   details = FALSE,
@@ -25,17 +25,17 @@ f2.AUC(
 \item{Conc}{Name of the column with concentration data
 (only for stacked data, \code{Trt.cols = FALSE}).}
 
-\item{Treatment}{Name of the column with treatment/formulation information
+\item{Trt}{Name of the column with treatment/formulation information
 (only for stacked data, \code{Trt.cols = FALSE}).}
 
-\item{Reference}{Nomenclature in \code{dta} for the Reference product, defaults to \code{R}.}
+\item{Ref}{Nomenclature in \code{dta} for the Reference product, defaults to \code{R}.}
 
 \item{Test}{Nomenclature in \code{dta} for the Test product, defaults to \code{T}.}
 
 \item{method}{Method for the AUC calculation:
 \itemize{
 \item \code{Linear-Up/Log-Down} (default method): Linear Trapezoidal Rule for for Increasing Values, Log Trapezoidal Rule for Decreasing Values.
-\item \code{Linear/Log}: Linear Trapezoidal Rule for for Values below Cmax, Log Trapezoidal Rule for Values above Cmax.
+\item \code{Linear/Log}: Linear Trapezoidal Rule for for Values below \eqn{C_{\text{max}}}, Log Trapezoidal Rule for Values above \eqn{C_{\text{max}}}.
 \item \code{Linear}: Linear Trapezoidal Rule.
 }}
 
@@ -43,7 +43,7 @@ f2.AUC(
 columns/pivoted (\code{TRUE}), or in rows/stacked (\code{FALSE}).}
 
 \item{details}{A logical value indicating whether detailed results will be
-presented (\code{TRUE}), or if the function only returns the f2 factor
+presented (\code{TRUE}), or if the function only returns the \eqn{f_2} factor
 (\code{FALSE}). Defaults to \code{FALSE}.}
 
 \item{plot}{A logical value indicating whether graphical representation will be
@@ -52,17 +52,17 @@ returned. Defaults to \code{TRUE}.}
 \value{
 Returns a list with the following elements:
 \itemize{
-\item Raw Concentration Data: Dataframe of input concentration data, with
+\item \verb{Raw Concentration Data}: Dataframe of input concentration data, with
 treatment information in columns (pivoted).
-\item Cumulative AUC: Dataframe with cumulative AUC over time, for Test and Reference product.
-\item Reference AUClast: Vector of Reference AUClast.
-\item Normalized AUC: dataframe with normalize Test and Reference AUC
-concentrations over time, by Reference AUClast, until Tlast.
-\item AUC f2 Factor: dataframe from \code{f2()} function.
+\item \verb{Cumulative AUC}: Dataframe with cumulative AUC over time, for Test and Reference product, calculated from \code{\link[=AUC]{AUC()}} function.
+\item \verb{Reference AUClast}: Vector of Reference \eqn{AUC_{\text{0-t}}}.
+\item \verb{Normalized AUC}: dataframe with normalize Test and Reference AUC
+concentrations over time, by Reference \eqn{AUC_{\text{0-t}}}, until \eqn{t_{\text{last}}}
+\item \verb{AUC f2 Factor}: dataframe from \code{\link[=f2]{f2()}} function.
 }
 }
 \description{
-\code{f2.AUC()} calculates the f2 Similarity factor for AUC, from concentration data.
+\code{f2.AUC()} calculates the \eqn{f_2} Similarity factor for AUC, from concentration data.
 }
 \examples{
 # Calculate f2 Factor for AUC
@@ -79,6 +79,11 @@ Henriques, S.C.; Albuquerque, J.; Paixão, P.; Almeida, L.; Silva, N.E. (2023).
 Alternative Analysis Approaches for the Assessment of Pilot Bioavailability/Bioequivalence Studies.
 \emph{Pharmaceutics}. \emph{15}(5), 1430.
 \href{https://doi.org/10.3390/pharmaceutics15051430}{10.3390/pharmaceutics15051430}.
+
+Henriques, S.C.; Paixão, P.; Almeida, L.; Silva, N.E. (2023).
+Predictive Potential of C~max~ Bioequivalence in Pilot Bioavailability/Bioequivalence Studies,
+through the Alternative ƒ~2~ Similarity Factor Method. \emph{Pharmaceutics}. \emph{15}(10), 2498.
+\href{https://doi.org/10.3390/pharmaceutics15102498}{10.3390/pharmaceutics15102498}.
 }
 \author{
 Sara Carolina Henriques

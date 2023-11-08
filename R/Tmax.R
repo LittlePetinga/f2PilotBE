@@ -1,7 +1,7 @@
 #' Time of Cmax (Tmax)
 #'
 #' @description
-#' `Tmax()` calculates the time of the maximum observed concentration post-dose (Tmax).
+#' `Tmax()` calculates the time of the maximum observed concentration post-dose (\eqn{t_{\text{max}}}).
 #'
 #' @param dta Dataframe with concentration-time data.
 #' @param Time Name of the column with time data.
@@ -9,7 +9,6 @@
 #'
 #' @return Value of the time of the maximum observed concentration.
 #'
-#' @author Sara Carolina Henriques
 #'
 #' @examples
 #' Tmax(dta, 't', 'Conc')

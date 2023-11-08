@@ -2,7 +2,7 @@
 #'
 #' @description
 #' `geomean()` calculates geometric mean, i.e., the \emph{N}th root of the product of the \emph{N}
-#' observations, equivalent to exp(mean(log(x))).
+#' observations, equivalent to `exp(mean(log(x)))`.
 #'
 #' @param x An `R` object.
 #' @param na.rm A logical value indicating whether `NA` values should be stripped
@@ -10,7 +10,6 @@
 #'
 #' @return Value of the geometric mean.
 #'
-#' @author Sara Carolina Henriques
 #'
 #' @examples
 #' geomean(x, TRUE)

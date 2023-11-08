@@ -17,13 +17,10 @@ Tmax(dta, Time = "Time", Conc = "Conc")
 Value of the time of the maximum observed concentration.
 }
 \description{
-\code{Tmax()} calculates the time of the maximum observed concentration post-dose (Tmax).
+\code{Tmax()} calculates the time of the maximum observed concentration post-dose (\eqn{t_{\text{max}}}).
 }
 \examples{
 Tmax(dta, 't', 'Conc')
 Tmax(x, 'Time', 'Concentration')
 
-}
-\author{
-Sara Carolina Henriques
 }

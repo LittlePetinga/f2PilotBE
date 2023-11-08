@@ -29,23 +29,16 @@
 #' The \eqn{f_2} similarity factor ranges from 0 (when \eqn{{\overline{R}_t} - {\overline{T}_t} = 100%}, at
 #' all \eqn{t}) to 100 (when \eqn{{\overline{R}_t} - {\overline{T}_t} = 0%}, at all \eqn{t}).
 #'
-#' @author Sara Carolina Henriques
 #'
 #' @references
-#' Henriques, S.C.; Albuquerque, J.; Paixão, P.; Almeida, L.; Silva, N.E. (2023).
-#' Alternative Analysis Approaches for the Assessment of Pilot Bioavailability/Bioequivalence Studies.
-#' *Pharmaceutics*. *15*(5), 1430.
-#' [10.3390/pharmaceutics15051430](https://doi.org/10.3390/pharmaceutics15051430).
-#'
 #' Moore, J.W.; Flanner, H.H. (1996). Mathematical Comparison of Curves with an Emphasis on in Vitro
 #' Dissolution Profiles. *Pharm. Technol*. *20*, 64–74.
-#'
 #'
 #' @examples
 #' f2(dta, 'R', 'T')
 #'
 #' @export
-f2 <- function(dta, Ref = 'Reference', Test = 'Test') {
+f2 <- function(dta, Ref = 'R', Test = 'T') {
 
   # Rename columns
   names(dta)[names(dta) == Ref] <- "Reference"

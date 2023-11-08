@@ -17,7 +17,7 @@ Value of the geometric mean.
 }
 \description{
 \code{geomean()} calculates geometric mean, i.e., the \emph{N}th root of the product of the \emph{N}
-observations, equivalent to exp(mean(log(x))).
+observations, equivalent to \code{exp(mean(log(x)))}.
 }
 \examples{
 geomean(x, TRUE)
@@ -37,7 +37,4 @@ dta <- cbind(dta[3],stack(dta[1:2]))
 names(dta)[names(dta) \%in\% c('values','ind')] <- c('Conc',
                                                    'Treatment')
 
-}
-\author{
-Sara Carolina Henriques
 }

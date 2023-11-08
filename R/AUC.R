@@ -12,7 +12,6 @@
 #'
 #' @return Dataframe with cumulative AUC over time.
 #'
-#' @author Sara Carolina Henriques
 #'
 #' @examples
 #' AUC(dta, 't', 'Conc')

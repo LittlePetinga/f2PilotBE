@@ -16,22 +16,19 @@ AUClast(dta, Time = "Time", Conc = "Conc", method = "Linear-Up/Log-Down")
 \item{method}{Method for the AUC calculation:
 \itemize{
 \item \code{Linear-Up/Log-Down} (default method): Linear Trapezoidal Rule for for Increasing Values, Log Trapezoidal Rule for Decreasing Values.
-\item \code{Linear/Log}: Linear Trapezoidal Rule for for Values below Cmax, Log Trapezoidal Rule for Values above Cmax.
+\item \code{Linear/Log}: Linear Trapezoidal Rule for for Values below \eqn{C_{\text{max}}}, Log Trapezoidal Rule for Values above \eqn{C_{\text{max}}}.
 \item \code{Linear}: Linear Trapezoidal Rule.
 }}
 }
 \value{
-Value of AUClast.
+Value of \eqn{AUC_{\text{0-t}}}.
 }
 \description{
 \code{AUClast()} calculates area under the concentration-time curve (AUC)
-from time zero to the time of the last measurable concentration (AUClast).
+from time zero to the time of the last measurable concentration (\eqn{AUC_{\text{0-t}}}).
 }
 \examples{
 AUClast(dta, 't', 'Conc')
 AUClast(x, 'Time', 'Concentration', 'Linear/Log')
 
-}
-\author{
-Sara Carolina Henriques
 }

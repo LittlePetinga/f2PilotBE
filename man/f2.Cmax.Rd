@@ -8,8 +8,8 @@ f2.Cmax(
   dta,
   Time = "Time",
   Conc = "Conc",
-  Treatment = "Treatment",
-  Reference = "R",
+  Trt = "Treatment",
+  Ref = "R",
   Test = "T",
   Trt.cols = TRUE,
   details = FALSE,
@@ -24,10 +24,10 @@ f2.Cmax(
 \item{Conc}{Name of the column with concentration data
 (only for stacked data, \code{Trt.cols = FALSE}).}
 
-\item{Treatment}{Name of the column with treatment/formulation information
+\item{Trt}{Name of the column with treatment/formulation information
 (only for stacked data, \code{Trt.cols = FALSE}).}
 
-\item{Reference}{Nomenclature in \code{dta} for the Reference product, defaults to \code{R}.}
+\item{Ref}{Nomenclature in \code{dta} for the Reference product, defaults to \code{R}.}
 
 \item{Test}{Nomenclature in \code{dta} for the Test product, defaults to \code{T}.}
 
@@ -35,7 +35,7 @@ f2.Cmax(
 columns/pivoted (\code{TRUE}), or in rows/stacked (\code{FALSE}).}
 
 \item{details}{A logical value indicating whether detailed results will be
-presented (\code{TRUE}), or if the function only returns the f2 factor
+presented (\code{TRUE}), or if the function only returns the \eqn{f_2} factor
 (\code{FALSE}). Defaults to \code{FALSE}.}
 
 \item{plot}{A logical value indicating whether graphical representation will be
@@ -61,7 +61,7 @@ from concentration data.
 Henriques \emph{et al} (2023) proposed to used the \eqn{f_2} factor to assess the similarity on
 the rate of drug absorption by normalizing Test and Reference mean concentration-time profiles to the
 maximum plasma concentration (\eqn{C_{\text{max}}}) derived from the mean Reference profile, until
-Reference Cmax is observed (Reference \eqn{t_{\text{max}}}):
+Reference \eqn{C_{\text{max}}} is observed (Reference \eqn{t_{\text{max}}}):
 \deqn{
   C_{t}^{N} = 100 \cdot \frac{\overline{C}_{t}}{C_{\text{max R}}}, \text{ where } 0 \leq t \leq
   t_{\text{max R}}
@@ -82,11 +82,11 @@ Test products, respectively.
 \examples{
 # Calculate f2 Factor for Cmax
 # when treatment data is pivoted:
-f2.Cmax(dta, Time = 'Time', Reference = 'R', Test = 'T'
+f2.Cmax(dta, Time = 'Time', Ref = 'R', Test = 'T'
 
 # when treatment data is stacked:
 f2.Cmax(dta, Time = 'Time', Conc = 'Conc',
-        Treatment = 'Treatment', Reference = 'R', Test = 'T')
+        Trt = 'Treatment', Ref = 'R', Test = 'T')
 
 }
 \references{
@@ -94,6 +94,11 @@ Henriques, S.C.; Albuquerque, J.; Paixão, P.; Almeida, L.; Silva, N.E. (2023).
 Alternative Analysis Approaches for the Assessment of Pilot Bioavailability/Bioequivalence Studies.
 \emph{Pharmaceutics}. \emph{15}(5), 1430.
 \href{https://doi.org/10.3390/pharmaceutics15051430}{10.3390/pharmaceutics15051430}.
+
+Henriques, S.C.; Paixão, P.; Almeida, L.; Silva, N.E. (2023).
+Predictive Potential of \eqn{C_{\text{max}}} Bioequivalence in Pilot Bioavailability/Bioequivalence Studies,
+through the Alternative \eqn{f_2} Similarity Factor Method. \emph{Pharmaceutics}. \emph{15}(10), 2498.
+\href{https://doi.org/10.3390/pharmaceutics15102498}{10.3390/pharmaceutics15102498}.
 }
 \author{
 Sara Carolina Henriques
