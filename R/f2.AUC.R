@@ -33,6 +33,8 @@
 #'
 #' @author Sara Carolina Henriques
 #'
+#' @import ggplot2
+#'
 #' @references
 #' Henriques, S.C.; Albuquerque, J.; Paixão, P.; Almeida, L.; Silva, N.E. (2023).
 #' Alternative Analysis Approaches for the Assessment of Pilot Bioavailability/Bioequivalence Studies.
@@ -48,11 +50,28 @@
 #' @examples
 #' # Calculate f2 Factor for AUC
 #' # when treatment data is pivoted:
-#' f2.AUC(dta, Time = 'Time', Reference = 'R', Test = 'T')
+#' dta_piv <- data.frame(
+#'   Time = c(0, 0.25, 0.5, 0.75, 1, 1.5, 1.75, 2, 2.25, 2.5,
+#'            2.75, 3, 3.25, 3.5, 3.75, 4, 6, 8, 12, 24),
+#'   R = c(0.00, 221.23, 377.19, 494.73, 555.74, 623.86, 615.45, 663.38, 660.29, 621.71,
+#'         650.33, 622.28, 626.72, 574.94, 610.51, 554.02, 409.14, 299.76, 162.85, 27.01),
+#'   T = c(0.00, 149.24, 253.05, 354.49, 412.49, 530.07, 539.68, 566.30, 573.54, 598.33,
+#'         612.63, 567.48, 561.10, 564.47, 541.50, 536.92, 440.32, 338.78, 185.03, 31.13)
+#' )
+#' f2.AUC(dta_piv, Time = 'Time', Ref = 'R', Test = 'T')
 #'
 #' # when treatment data is stacked:
-#' f2.AUC(dta, Time = 'Time', Conc = 'Conc',
-#'        Treatment = 'Treatment', Reference = 'R', Test = 'T')
+#' dta_stk <- data.frame(
+#'   Time = rep(c(0, 0.25, 0.5, 0.75, 1, 1.5, 1.75, 2, 2.25, 2.5,
+#'                2.75, 3, 3.25, 3.5, 3.75, 4, 6, 8, 12, 24),2),
+#'   Trt = c(rep('R',20), rep('T',20)),
+#'   Conc = c(c(0.00, 221.23, 377.19, 494.73, 555.74, 623.86, 615.45, 663.38, 660.29, 621.71,
+#'              650.33, 622.28, 626.72, 574.94, 610.51, 554.02, 409.14, 299.76, 162.85, 27.01),
+#'          c(0.00, 149.24, 253.05, 354.49, 412.49, 530.07, 539.68, 566.30, 573.54, 598.33,
+#'            612.63, 567.48, 561.10, 564.47, 541.50, 536.92, 440.32, 338.78, 185.03, 31.13))
+#' )
+#' f2.AUC(dta_stk, Time = 'Time', Conc = 'Conc',
+#'        Trt = 'Trt', Ref = 'R', Test = 'T', Trt.cols = FALSE)
 #'
 #' @export
 f2.AUC <- function(dta, Time = 'Time', Conc = 'Conc',
@@ -153,7 +172,6 @@ f2.AUC <- function(dta, Time = 'Time', Conc = 'Conc',
                           # panel.grid.major = element_blank(),
                           panel.grid.minor = element_blank(),
                           legend.position = "bottom"))
-
   }
 
 

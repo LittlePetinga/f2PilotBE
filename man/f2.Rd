@@ -44,6 +44,11 @@ The \eqn{f_2} similarity factor ranges from 0 (when \eqn{{\overline{R}_t} - {\ov
 all \eqn{t}) to 100 (when \eqn{{\overline{R}_t} - {\overline{T}_t} = 0\%}, at all \eqn{t}).
 }
 \examples{
+dta <- data.frame(
+  Time = c(0, 0.25, 0.5, 0.75, 1, 1.5, 1.75, 2),
+  R = c(0.0, 33.3, 56.8, 74.5, 83.7, 94.0, 92.7, 100.0),
+  T = c(0.0, 22.4, 38.1, 53.4, 62.1, 79.9, 81.3, 85.3)
+)
 f2(dta, 'R', 'T')
 
 }
