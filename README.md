@@ -18,15 +18,14 @@ f2PilotBE
 - [References](#references)
 
 <!-- badges: start -->
+<!-- ![GitHub Actions Status](https://github.com/LittlePetinga/f2PilotBE/workflows/R-CMD-check/badge.svg) -->
 
-![GitHub Actions
-Status](https://github.com/LittlePetinga/f2PilotBE/workflows/R-CMD-check/badge.svg)
 [![License:
 GPL-3.0-or-later](https://img.shields.io/badge/License-GPL--3.0--or--later-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
-![repo](https://img.shields.io/badge/Repo%20Since-3%20Oct%202023-yellow)
+[![repo](https://img.shields.io/badge/Repo%20Since-Nov%202023-yellow)](https://github.com/LittlePetinga/f2PilotBE)
 [![Version](https://img.shields.io/badge/Version-0.0.1-blue)](https://github.com/LittlePetinga/f2PilotBE)
-![Last
-Update](https://img.shields.io/badge/Last%20Update-9%20Nov%202023-green)
+[![Last
+Update](https://img.shields.io/badge/Last%20Update-11%20Nov%202023-green)](https://github.com/LittlePetinga/f2PilotBE)
 [![Project Status:
 Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Paper f2
@@ -47,16 +46,18 @@ The `f2PilotBE` package is designed to calculate the similarity factor
 *f*<sub>2</sub> based on pharmacokinetic profiles from pilot
 bioavailability/bioequivalence (BA/BE) studies, as an alternative
 approach to assess the potential of bioequivalence of a Test product in
-comparison to a Reference product in terms of C<sub>max</sub> and AUC.
+comparison to a Reference product in terms of maximum observed
+concentration (C<sub>max</sub>) and area under the concentration-time
+curve (AUC).
 
 This package is based on the publications of Henriques *et al.* (2023)
 \[<a href="#references">1</a>,<a href="#references">2</a>\], which
 propose the use of the geometric mean (G<sub>mean</sub>) *f*<sub>2</sub>
-factor using a cut-off of 35, for the comparison of the absorption rate
-(given by the maximum observed concentration \[C<sub>max</sub>\]) of
-Test and Reference formulations. For the tested simulated scenarios,
-G<sub>mean</sub> *f*<sub>2</sub> factor using a cut-off of 35 showed a
-good relationship between avoiding type I and type II errors.
+factor, for the comparison of the absorption rate (given by
+C<sub>max</sub>) of Test and Reference formulations. According to the
+articles, G<sub>mean</sub> *f*<sub>2</sub> factor using a cut-off of 35
+showed a good relationship between avoiding type I and type II errors
+\[<a href="#references">1</a>,<a href="#references">2</a>\].
 
 ## Background
 
@@ -72,25 +73,22 @@ difference, and can be calculated as a function of the reciprocal of
 mean squared-root transformation of the sum of square differences at all
 points:
 
-$f_{2}=50\cdot\log\biggl(100\cdot\biggl[1+\frac{1}{n}\sum_{t=1}^{t=n}{(\bar{R}_{t}-\bar{T}_{t})^2} \biggr]^{-0.5}\biggr)$
+$$f_{2}=50\cdot\log\biggl(100\cdot\biggl[1+\frac{1}{n}\sum_{t=1}^{t=n}{(\bar{R}_{t}-\bar{T}_{t})^2} \biggr]^{-0.5}\biggr)$$
 
 where $f_{2}$ is the similarity factor, $n$ is the number of time
-points, and $\bar{R}_{t}$ and $\bar{T}_{t}$ are the mean percentage of
-drug dissolved at time $t$, for Reference and Test products respectively
-\[<a href="#references">3</a>\].
+points, and $\bar{R}_{t}$ $\bar{R}_{t}$ and $\bar{T}_{t}$ are the mean
+percentage of drug dissolved at time $t$, for Reference and Test
+products respectively \[<a href="#references">3</a>\].
 
 The *f*<sub>2</sub> similarity factor ranges from 0 (when
-$\bar{R}_{t}-\bar{T}_{t}=100\%$ at all $t$) to 100 (when
-$\bar{R}_{t}-\bar{T}_{t}= 0\%$ at all $t$)
+$\bar{R}_{t}-\bar{T}_{t}=100\%$, at all $t$) to 100 (when
+$\bar{R}_{t}-\bar{T}_{t}= 0\%$, at all $t$)
 \[<a href="#references">3</a>\].
 
-The figure below (from Henriques *et al.* (2023)
+<a href="#fig1">Figure 1</a> (from Henriques *et al.* (2023)
 \[<a href="#references">1</a>\]) presents the distribution of
-*f*<sub>2</sub> similarity factor as a function of mean difference.
-*f*<sub>2</sub> similarity factor is derived from the mean squared
-difference and can be calculated as a function of the reciprocal of the
-mean squared-root transformation of the sum of square differences at all
-points \[<a href="#references">3</a>\]. An average difference of
+*f*<sub>2</sub> similarity factor as a function of mean difference. Form
+the *f*<sub>2</sub> equation, an average difference of
 <span style="color: red;">10%</span>,
 <span style="color: green;">15%</span>, and
 <span style="color: blue;">20%</span> from all measured time points
@@ -99,14 +97,15 @@ results in a *f*<sub>2</sub> value of
 <span style="color: green;">41</span> (green dotted lines) and
 <span style="color: blue;">35</span> (blue dotted lines), respectively.
 
+<!-- Figure from article (Part 1) -->
 <figure>
 <img src="https://pub.mdpi-res.com/pharmaceutics/pharmaceutics-15-01430/article_deploy/html/images/pharmaceutics-15-01430-g002.png?1683533911" alt="Image Description" height="400">
 <figcaption>
-Figure 1. Distribution of ƒ<sub>2</sub> similarity factor as a function
-of mean difference. ƒ<sub>2</sub> similarity factor is derived from the
-mean squared difference and can be calculated as a function of the
-reciprocal of the mean squared-root transformation of the sum of square
-differences at all points. An average difference of
+Figure 1. <a name="fig1"></a> Distribution of ƒ<sub>2</sub> similarity
+factor as a function of mean difference. ƒ<sub>2</sub> similarity factor
+is derived from the mean squared difference and can be calculated as a
+function of the reciprocal of the mean squared-root transformation of
+the sum of square differences at all points. An average difference of
 <span style="color: red;">10%</span>,
 <span style="color: green;">15%</span>, and
 <span style="color: blue;">20%</span> from all measured time points
@@ -116,8 +115,10 @@ lines) and <span style="color: blue;">35</span> (blue dotted lines),
 respectively.
 </figcaption>
 </figure>
+<!-- Code for plot of distribution of ƒ~2~ similarity factor as a function of mean difference -->
+<!-- Not run -->
 
-Asproposed by Henriques *et al.* (2023), the concept of similarity
+As proposed by Henriques *et al.* (2023), the concept of similarity
 factor *f*<sub>2</sub> can be applied as an alternative to the average
 bioequivalence analysis, for pilot BA/BE studies
 \[<a href="#references">1</a>,<a href="#references">2</a>\].
@@ -131,7 +132,7 @@ from the mean Reference profile, until Reference C<sub>max</sub> is
 observed (Reference t<sub>max</sub>)
 \[<a href="#references">1</a>,<a href="#references">2</a>\]:
 
-$C_{t}^{N}=100\cdot\frac{\bar{C}_{t}}{C_{max,R}}$, where
+$$C_{t}^{N}=100\cdot\frac{\bar{C}_{t}}{C_{max,R}}$$, where
 $0 \le t \le t_{max,R}$,
 
 where $C_{t}^{N}$ is the normalized concentration at time $t$,
@@ -140,7 +141,7 @@ $C_{max,R}$ is the C<sub>max</sub> of the Reference mean
 concentration-time profile, and $t_{max,R}$ the time of observation of
 $C_{max,R}$. The similarity *f*<sub>2</sub> factor is calculated as
 
-$C_{max}f_{2}=50\cdot\ log \biggl(100\cdot \biggl[1+\frac{1}{n} \sum_{t=1}^{t=n}{(R_{t}^{N} - T_{t}^{N})^2} \biggr]^{-0.5} \biggr)$,
+$$C_{max}f_{2}=50\cdot\ log \biggl(100\cdot \biggl[1+\frac{1}{n} \sum_{t=1}^{t=n}{(R_{t}^{N} - T_{t}^{N})^2} \biggr]^{-0.5} \biggr)$$
 
 where $n$ is the number of time points until Reference $t_{max}$, and
 $R_{t}^{N}$ and $T_{t}^{N}$ are the normalized concentration at time
@@ -148,16 +149,19 @@ $t$, for Reference and Test products respectively.
 
 ### Bioequivalence Evaluation of Pilot Studies
 
-For the planning of pilot BA/BE studies, a decision tree is proposed.
+For the planning of pilot BA/BE studies, a decision tree is proposed
+(<a href="#fig2">Figure 2</a>, from Henriques *et al.* (2023)
+\[<a href="#references">2</a>\]).
 
 For drug products with a known Intra-Subject Coefficient of Variation
 (ISCV%) below 20%, the authors propose the estimation of the sample size
-for a pilot study assuming a GMR of 100%, a power of 80%, and an α of
-0.05 \[<a href="#references">1</a>, <a href="#references">2</a>\].
-However, for cases of higher ISCV% or unknow variability, it is propose
-the use of a fixed sample size of **20** subjects, as the use of higher
-sample sizes has not shown to increase the study power meaningfully, but
-was sufficient to avoid substantial type I errors
+for a pilot study assuming a Test-to-Reference Geometric Least Square
+Mean Ratio (GMR) of 100%, a power of 80%, and an α of 0.05
+\[<a href="#references">1</a>, <a href="#references">2</a>\]. However,
+for cases of higher ISCV% or unknown variability, it is propose the use
+of a fixed sample size of **20 subjects**, as the use of higher sample
+sizes has not shown to increase the study power meaningfully, but was
+sufficient to avoid substantial type I errors
 \[<a href="#references">2</a>\].
 
 Regarding the analysis of data from pilot studies, the authors propose
@@ -166,41 +170,59 @@ For the case in which the calculated GMR and the corresponding 90% CI
 are not within \[80.00–125.00\]%, the alternative G<sub>mean</sub>
 *f*<sub>2</sub> factor method should be used with a cut off of 35, as it
 was shown to be a valuable indicator of the potentiality of the Test
-formulation to be bioequivalent in terms of C<sub>max</sub> with a
-Reference product:
+formulation to be bioequivalent in terms of C<sub>max</sub>:
 
-1.  If the *f*<sub>2</sub> factor is above or equal to 35 (corresponding
-    to a difference of 20% between Test and Reference concentration–time
-    profiles until the Reference tmax), the confidence to proceed to a
-    pivotal study is higher than 90% when ISCV% is lower or equal to
-    20%; the confidence is higher than 80% when ISCV% is within 20% and
-    30%; and the confidence is higher than 60% when ISCV% is higher than
-    40% \[<a href="#references">2</a>\].
+1.  If the *f*<sub>2</sub> factor is above or equal to **35**
+    (corresponding to a difference of 20% between Test and Reference
+    concentration–time profiles until the Reference t<sub>max</sub>),
+    the confidence to proceed to a pivotal study is higher than 90% when
+    ISCV% is lower or equal to 20%; the confidence is higher than 80%
+    when ISCV% is within 20% and 30%; and the confidence is higher than
+    60% when ISCV% is higher than 40% \[<a href="#references">2</a>\].
 
-2.  If the *f*<sub>2</sub> factor is above or equal to 41 (corresponding
-    to a difference of 15% between Test and Reference concentration–time
-    profiles until the Reference tmax), the confidence to proceed to a
-    pivotal study is higher than 90% for ISCV% until 40%, and higher
-    than 80% for ISCV% within 50% to 60%
+2.  If the *f*<sub>2</sub> factor is above or equal to **41**
+    (corresponding to a difference of 15% between Test and Reference
+    concentration–time profiles until the Reference t<sub>max</sub>),
+    the confidence to proceed to a pivotal study is higher than 90% for
+    ISCV% until 40%, and higher than 80% for ISCV% within 50% to 60%
     \[<a href="#references">2</a>\].
 
-3.  If the *f*<sub>2</sub> factor is above or equal to 50 (corresponding
-    to a difference of 10% between Test and Reference concentration–time
-    profiles until the Reference tmax), the probability of the Test
-    product to be truly bioequivalent to the Reference product in terms
-    of Cmax, i.e., the confidence to proceed to a pivotal study, is
-    higher than 90%, irrespective of the ISCV%
-    \[<a href="#references">2</a>\].
+3.  If the *f*<sub>2</sub> factor is above or equal to **50**
+    (corresponding to a difference of 10% between Test and Reference
+    concentration–time profiles until the Reference t<sub>max</sub>),
+    the probability of the Test product to be truly bioequivalent to the
+    Reference product in terms of C<sub>max</sub>, i.e., the confidence
+    to proceed to a pivotal study, is higher than 90%, irrespective of
+    the ISCV% \[<a href="#references">2</a>\].
 
 <figure>
 <img src="https://www.mdpi.com/pharmaceutics/pharmaceutics-15-02498/article_deploy/html/images/pharmaceutics-15-02498-g013.png" alt="Image Description" height="800">
 <figcaption>
-Figure 2. Proposed decision tree for planning and analysis of pilot
-BA/BE studies.
+Figure 2. <a name="fig2"></a> Proposed decision tree for planning and
+analysis of pilot BA/BE studies.
 </figcaption>
 </figure>
 
 ## The f2PilotBE Package
+
+The `f2PilotBE` is equipped with the following functions to aid in the
+calculation of the similarity *f*<sub>2</sub> factor:
+
+- `AUC()`
+
+- `AUClast()`
+
+- `Cmax()`
+
+- `f2.AUC()`
+
+- `f2.Cmax()`
+
+- `f2()`
+
+- `geomean()`
+
+- `Tmax()`
 
 ### Installation
 
@@ -236,8 +258,17 @@ library("f2PilotBE")
 
 #### Calculate Geometric Mean Concentration
 
-Import individual concentration data and calculate the G<sub>mean</sub>
-concentration-time profiles for each Treatment.
+As proposed by the authors
+\[<a href="#references">1</a>,<a href="#references">2</a>\], the
+*f*<sub>2</sub> similarity factor should be calculated from the
+arithmetic (A<sub>mean</sub>) or geometric (G<sub>mean</sub>)
+concentration-time profiles.
+
+The `f2PilotBE` provides a function (`geomean()`) for the calculation of
+the G<sub>mean</sub>. For the calculation of the G<sub>mean</sub>
+profile for Test and Reference products, first, import the individual
+concentration-time data, and calculate the G<sub>mean</sub>
+concentration-time profiles for each Treatment, as follows.
 
 ``` r
 # Import individual concentration data
@@ -252,12 +283,26 @@ dta$Time <- as.numeric(row.names(dta))
 row.names(dta) <- c()
 ```
 
+The code above, will apply (`tapply`) the `geomean` function for each
+given treatment, and each timepoint.
+
+If the user prefers to use the A<sub>mean</sub>, instead of the
+G<sub>mean</sub> concentration-time data, simply replace the function
+`geomean`, with the function `mean` from base `R`.
+
 #### Calculate Cmax Similarity f2 Factor
 
-Consider the following mean concentration data for Test and Reference
-product:
+The `f2.Cmax()` function allows to calculate the *f*<sub>2</sub>
+similarity factor for C<sub>max</sub>, from Test and Reference mean
+concentration-time profiles.
 
-1.  Where treatment information is pivoted
+This function allows some flexibility on the structure of the mean
+concentration-time dataframe. Treatment (Test and Reference) information
+should either be provided in columns (pivoted) or rows (stacked). For
+both cases a column with `Time` information should always be provided:
+
+1.  For the case where Treatment information is provided in **columns**
+    (pivoted), as in the following example:
 
 ``` r
 # Create mean concentration-time data for Test and Reference product
@@ -265,65 +310,114 @@ product:
 dta_piv <- data.frame(
   Time = c(0, 0.25, 0.5, 0.75, 1, 1.5, 1.75, 2, 2.25, 2.5,
            2.75, 3, 3.25, 3.5, 3.75, 4, 6, 8, 12, 24),
-  Reference = c(0.00, 221.23, 377.19, 494.73, 555.74, 623.86, 615.45, 663.38, 660.29, 621.71,
-                650.33, 622.28, 626.72, 574.94, 610.51, 554.02, 409.14, 299.76, 162.85, 27.01),
-  Test = c(0.00, 149.24, 253.05, 354.49, 412.49, 530.07, 539.68, 566.30, 573.54, 598.33,
-           612.63, 567.48, 561.10, 564.47, 541.50, 536.92, 440.32, 338.78, 185.03, 31.13)
-)
+  Ref = c(0.00, 221.23, 377.19, 494.73, 555.74,
+          623.86, 615.45, 663.38, 660.29, 621.71,
+          650.33, 622.28, 626.72, 574.94, 610.51,
+          554.02, 409.14, 299.76, 162.85, 27.01),
+  Test = c(0.00, 149.24, 253.05, 354.49, 412.49,
+           530.07, 539.68, 566.30, 573.54, 598.33,
+           612.63, 567.48, 561.10, 564.47, 541.50,
+           536.92, 440.32, 338.78, 185.03, 31.13)
+ )
 ```
 
 The *f*<sub>2</sub> similarity factor for C<sub>max</sub> can be
-calculated from the mean concentration-time profiles as follows:
+calculated from the mean concentration-time profiles, applying the
+`f2.Cmax()` function as follows:
 
 ``` r
-# Calculate f2 Factor for Cmax
-# when treatment data is pivoted:
-f2.Cmax(dta_piv, Time = 'Time', Ref = 'Reference', Test = 'Test',
-        Trt.cols = TRUE, details = FALSE, plot = FALSE)
+# Calculate f2 Factor for Cmax when treatment data is pivoted:
+f2.Cmax(dta_piv, Time = "Time", Ref = "Ref", Test = "Test", plot = FALSE)
 #> Cmax f2 Factor: 38.97
 ```
 
-2.  Where treatment information is stacked
+As demonstrated above, for the case when treatment data is pivoted, the
+`f2.Cmax()` function requires the indication of: (1) the dataframe with
+mean concentration-time data (in this case `dta = dta_piv`), (2) the
+name of the column in the dataframe with time information (in this case
+`Time = "Time"`), (3) the name of the column in the dataframe with
+concentration information for the Reference product (in this case
+`Ref = "Reference"`), and (4) the name of the column in the dataframe
+with concentration information for the Test product (in this case
+`Test = "Test"`).
+
+Please note that `Trt.cols` is not required, as it defaults to `TRUE`
+(i.e, logical value indicating whether treatment is presented in
+columns/pivoted).
+
+2.  For the case where Treatment information is provided in **rows**
+    (stacked), as in the following example:
 
 ``` r
 # Create mean concentration-time data for Test and Reference product
 # where treatment information is stacked
 dta_stk <- data.frame(
   Time = rep(c(0, 0.25, 0.5, 0.75, 1, 1.5, 1.75, 2, 2.25, 2.5,
-               2.75, 3, 3.25, 3.5, 3.75, 4, 6, 8, 12, 24),2),
-  Trt = c(rep('Ref',20), rep('Test',20)),
-  Conc = c(c(0.00, 221.23, 377.19, 494.73, 555.74, 623.86, 615.45, 663.38, 660.29, 621.71,
-             650.33, 622.28, 626.72, 574.94, 610.51, 554.02, 409.14, 299.76, 162.85, 27.01),
-           c(0.00, 149.24, 253.05, 354.49, 412.49, 530.07, 539.68, 566.30, 573.54, 598.33,
-             612.63, 567.48, 561.10, 564.47, 541.50, 536.92, 440.32, 338.78, 185.03, 31.13))
+               2.75, 3, 3.25, 3.5, 3.75, 4, 6, 8, 12, 24),2), 
+  Trt = c(rep('R',20), rep('T',20)),
+  Conc = c(c(0.00, 221.23, 377.19, 494.73, 555.74,
+             623.86, 615.45, 663.38, 660.29, 621.71,
+             650.33, 622.28, 626.72, 574.94, 610.51,
+             554.02, 409.14, 299.76, 162.85, 27.01),
+           c(0.00, 149.24, 253.05, 354.49, 412.49,
+             530.07, 539.68, 566.30, 573.54, 598.33,
+             612.63, 567.48, 561.10, 564.47, 541.50,
+             536.92, 440.32, 338.78, 185.03, 31.13))
 )
 ```
 
 The *f*<sub>2</sub> similarity factor for C<sub>max</sub> can be
-calculated from the mean concentration-time profiles as follows:
+calculated from the mean concentration-time profiles, applying the
+`f2.Cmax()` function as follows:
 
 ``` r
-# Calculate f2 Factor for Cmax
-# when treatment data is stacked:
-f2.Cmax(dta_stk, Time = 'Time', Conc = 'Conc',
-        Trt = 'Trt', Ref = 'Ref', Test = 'Test',
-        Trt.cols = FALSE, details = FALSE, plot = FALSE)
+# Calculate f2 Factor for Cmax when treatment data is stacked:
+f2.Cmax(dta_stk, Time = "Time", Conc = "Conc",
+        Trt = "Trt", Ref = "R", Test = "T",
+        Trt.cols = FALSE, plot = FALSE)
 #> Cmax f2 Factor: 38.97
 ```
 
-For either cases, a graphical representation of the normalized Test and
+As demonstrated above, for the case when treatment data is stacked, the
+`f2.Cmax()` function requires the indication of: (1) the dataframe with
+mean concentration-time data (in this case `dta = dta_stk`), (2) the
+name of the column in the dataframe with time information (in this case
+`Time = "Time"`), (3) the name of the column in the dataframe with
+concentration information (in this case `Conc = "Conc"`), (4) the name
+of the column in the dataframe with treatment information (in this case
+`Trt = "Trt"`), (5) the nomenclature in the dataframe for the Reference
+product (in this case `Ref = "R"`), (6) the nomenclature in the
+dataframe for the Test product (in this case `Test = "T"`), and (7)
+indication that treatment is presented in rows/stacked
+(`Trt.cols = FALSE`).
+
+For both cases, a graphical representation of the normalized Test and
 Reference concentrations over time, by Reference C<sub>max</sub>, until
 Reference t<sub>max</sub>, can be generated, by simply turning `plot` to
 `TRUE`:
 
 ``` r
-# Calculate f2 Factor for Cmax
-# when treatment data is pivoted:
-f2.Cmax(dta_piv, Time = 'Time', Ref = 'Reference', Test = 'Test',
-        Trt.cols = TRUE, details = FALSE, plot = TRUE)
+# Calculate f2 Factor for Cmax, and plot normalized concentration by Reference Cmax
+f2.Cmax(dta_piv, Time = "Time", Ref = "Ref", Test = "Test", plot = TRUE)
 ```
 
 <img src="man/figures/README-unnamed-chunk-12-1.png" width="70%" />
+
+    #> Cmax f2 Factor: 38.97
+
+By default, `f2.Cmax()` plots the Reference product in `black`, and the
+Test product in <span style="color: blue;">`blue`</span>, nevertheless,
+the user can personalize the output plot with different colours
+according to their preference, by using `col.R` and `col.T`, for
+Reference and Test product respectively:
+
+``` r
+# Calculate f2 Factor for Cmax, and plot normalized concentration by Reference Cmax
+f2.Cmax(dta_piv, Time = "Time", Ref = "Ref", Test = "Test", 
+        plot = TRUE, col.R = "darkblue", col.T = "red")
+```
+
+<img src="man/figures/README-unnamed-chunk-13-1.png" width="70%" />
 
     #> Cmax f2 Factor: 38.97
 

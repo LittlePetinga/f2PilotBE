@@ -11,8 +11,10 @@
 #' @param Ref Nomenclature in `dta` for the Reference product, defaults to `R`.
 #' @param Test Nomenclature in `dta` for the Test product, defaults to `T`.
 #' @param method Method for the AUC calculation:
-#'   * `Linear-Up/Log-Down` (default method): Linear Trapezoidal Rule for for Increasing Values, Log Trapezoidal Rule for Decreasing Values.
-#'   * `Linear/Log`: Linear Trapezoidal Rule for for Values below \eqn{C_{\text{max}}}, Log Trapezoidal Rule for Values above \eqn{C_{\text{max}}}.
+#'   * `Linear-Up/Log-Down` (default method): Linear Trapezoidal Rule for for Increasing Values,
+#'     Log Trapezoidal Rule for Decreasing Values.
+#'   * `Linear/Log`: Linear Trapezoidal Rule for for Values below \eqn{C_{\text{max}}},
+#'     Log Trapezoidal Rule for Values above \eqn{C_{\text{max}}}.
 #'   * `Linear`: Linear Trapezoidal Rule.
 #' @param Trt.cols A logical value indicating whether treatment is presented in
 #'   columns/pivoted (`TRUE`), or in rows/stacked (`FALSE`).
@@ -21,11 +23,16 @@
 #'   (`FALSE`). Defaults to `FALSE`.
 #' @param plot A logical value indicating whether graphical representation will be
 #'   returned. Defaults to `TRUE`.
+#' @param col.R Desired colour for plotting Reference data.
+#'   Defaults to `black`. Only used if `plot` is set to `TRUE`.
+#' @param col.T Desired colour for plotting Test data.
+#'   Defaults to `blue`. Only used if `plot` is set to `TRUE`.
 #'
 #' @return Returns a list with the following elements:
 #'   * `Raw Concentration Data`: Dataframe of input concentration data, with
 #'     treatment information in columns (pivoted).
-#'   * `Cumulative AUC`: Dataframe with cumulative AUC over time, for Test and Reference product, calculated from [AUC()] function.
+#'   * `Cumulative AUC`: Dataframe with cumulative AUC over time, for Test and Reference product,
+#'     calculated from [AUC()] function.
 #'   * `Reference AUClast`: Vector of Reference \eqn{AUC_{\text{0-t}}}.
 #'   * `Normalized AUC`: dataframe with normalize Test and Reference AUC
 #'     concentrations over time, by Reference \eqn{AUC_{\text{0-t}}}, until \eqn{t_{\text{last}}}
@@ -42,34 +49,45 @@
 #' [10.3390/pharmaceutics15051430](https://doi.org/10.3390/pharmaceutics15051430).
 #'
 #' Henriques, S.C.; Paixão, P.; Almeida, L.; Silva, N.E. (2023).
-#' Predictive Potential of C~max~ Bioequivalence in Pilot Bioavailability/Bioequivalence Studies,
-#' through the Alternative ƒ~2~ Similarity Factor Method. *Pharmaceutics*. *15*(10), 2498.
+#' Predictive Potential of \eqn{C_{\text{max}}} Bioequivalence in Pilot Bioavailability/Bioequivalence
+#' Studies, through the Alternative \eqn{f_2} Similarity Factor Method. *Pharmaceutics*. *15*(10), 2498.
 #' [10.3390/pharmaceutics15102498](https://doi.org/10.3390/pharmaceutics15102498).
 #'
 #'
 #' @examples
-#' # Calculate f2 Factor for AUC
-#' # when treatment data is pivoted:
+#' # For a dataframe with concentration-time data for Test and Reference product
+#' # with treatment information pivoted:
 #' dta_piv <- data.frame(
 #'   Time = c(0, 0.25, 0.5, 0.75, 1, 1.5, 1.75, 2, 2.25, 2.5,
 #'            2.75, 3, 3.25, 3.5, 3.75, 4, 6, 8, 12, 24),
-#'   R = c(0.00, 221.23, 377.19, 494.73, 555.74, 623.86, 615.45, 663.38, 660.29, 621.71,
-#'         650.33, 622.28, 626.72, 574.94, 610.51, 554.02, 409.14, 299.76, 162.85, 27.01),
-#'   T = c(0.00, 149.24, 253.05, 354.49, 412.49, 530.07, 539.68, 566.30, 573.54, 598.33,
-#'         612.63, 567.48, 561.10, 564.47, 541.50, 536.92, 440.32, 338.78, 185.03, 31.13)
+#'   Ref = c(0.00, 221.23, 377.19, 494.73, 555.74,
+#'           623.86, 615.45, 663.38, 660.29, 621.71,
+#'           650.33, 622.28, 626.72, 574.94, 610.51,
+#'           554.02, 409.14, 299.76, 162.85, 27.01),
+#'   Test = c(0.00, 149.24, 253.05, 354.49, 412.49,
+#'            530.07, 539.68, 566.30, 573.54, 598.33,
+#'            612.63, 567.48, 561.10, 564.47, 541.50,
+#'            536.92, 440.32, 338.78, 185.03, 31.13)
 #' )
-#' f2.AUC(dta_piv, Time = 'Time', Ref = 'R', Test = 'T')
+#' # AUC f2 factor can be calculated as:
+#' f2.AUC(dta_piv, Time = 'Time', Ref = 'Ref', Test = 'Test')
 #'
-#' # when treatment data is stacked:
+#' # For a dataframe with concentration-time data for Test and Reference product
+#' # with treatment information stacked:
 #' dta_stk <- data.frame(
 #'   Time = rep(c(0, 0.25, 0.5, 0.75, 1, 1.5, 1.75, 2, 2.25, 2.5,
 #'                2.75, 3, 3.25, 3.5, 3.75, 4, 6, 8, 12, 24),2),
 #'   Trt = c(rep('R',20), rep('T',20)),
-#'   Conc = c(c(0.00, 221.23, 377.19, 494.73, 555.74, 623.86, 615.45, 663.38, 660.29, 621.71,
-#'              650.33, 622.28, 626.72, 574.94, 610.51, 554.02, 409.14, 299.76, 162.85, 27.01),
-#'          c(0.00, 149.24, 253.05, 354.49, 412.49, 530.07, 539.68, 566.30, 573.54, 598.33,
-#'            612.63, 567.48, 561.10, 564.47, 541.50, 536.92, 440.32, 338.78, 185.03, 31.13))
+#'   Conc = c(c(0.00, 221.23, 377.19, 494.73, 555.74,
+#'              623.86, 615.45, 663.38, 660.29, 621.71,
+#'              650.33, 622.28, 626.72, 574.94, 610.51,
+#'              554.02, 409.14, 299.76, 162.85, 27.01),
+#'            c(0.00, 149.24, 253.05, 354.49, 412.49,
+#'              530.07, 539.68, 566.30, 573.54, 598.33,
+#'              612.63, 567.48, 561.10, 564.47, 541.50,
+#'              536.92, 440.32, 338.78, 185.03, 31.13))
 #' )
+#' # Cmax f2 factor can be calculated as:
 #' f2.AUC(dta_stk, Time = 'Time', Conc = 'Conc',
 #'        Trt = 'Trt', Ref = 'R', Test = 'T', Trt.cols = FALSE)
 #'
@@ -77,7 +95,8 @@
 f2.AUC <- function(dta, Time = 'Time', Conc = 'Conc',
                    Trt = 'Treatment', Ref = 'Reference', Test = 'Test',
                    method = 'Linear-Up/Log-Down',
-                   Trt.cols = TRUE, details = FALSE, plot = TRUE) {
+                   Trt.cols = TRUE, details = FALSE,
+                   plot = TRUE, col.R = 'black', col.T = 'blue') {
 
   # If data is pivoted
   if (Trt.cols) {
@@ -161,8 +180,8 @@ f2.AUC <- function(dta, Time = 'Time', Conc = 'Conc',
                                   y = Reference,
                                   colour = "Reference"))
                   + scale_colour_manual(name="",
-                                        values = c("Reference"= "black",
-                                                   "Test" = "blue"))
+                                        values = c("Reference"= col.R,
+                                                   "Test" = col.T))
                   + labs(x = 'Time (h)',
                          y = 'Normalized AUC (%)')
                   + annotate('text', x = tail(Normalized$Time,1)*(3/4), y = 40,

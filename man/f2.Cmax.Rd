@@ -13,7 +13,9 @@ f2.Cmax(
   Test = "T",
   Trt.cols = TRUE,
   details = FALSE,
-  plot = TRUE
+  plot = TRUE,
+  col.R = "black",
+  col.T = "blue"
 )
 }
 \arguments{
@@ -40,6 +42,12 @@ presented (\code{TRUE}), or if the function only returns the \eqn{f_2} factor
 
 \item{plot}{A logical value indicating whether graphical representation will be
 returned. Defaults to \code{TRUE}.}
+
+\item{col.R}{Desired colour for plotting Reference data.
+Defaults to \code{black}. Only used if \code{plot} is set to \code{TRUE}.}
+
+\item{col.T}{Desired colour for plotting Test data.
+Defaults to \code{blue}. Only used if \code{plot} is set to \code{TRUE}.}
 }
 \value{
 Returns a list with the following elements:
@@ -80,28 +88,39 @@ and \eqn{{\overline{T}_t^N}} are the are the normalized concentration at time \e
 Test products, respectively.
 }
 \examples{
-# Calculate f2 Factor for Cmax
-# when treatment data is pivoted:
+# For a dataframe with concentration-time data for Test and Reference product
+# with treatment information pivoted:
 dta_piv <- data.frame(
   Time = c(0, 0.25, 0.5, 0.75, 1, 1.5, 1.75, 2, 2.25, 2.5,
            2.75, 3, 3.25, 3.5, 3.75, 4, 6, 8, 12, 24),
-  R = c(0.00, 221.23, 377.19, 494.73, 555.74, 623.86, 615.45, 663.38, 660.29, 621.71,
-        650.33, 622.28, 626.72, 574.94, 610.51, 554.02, 409.14, 299.76, 162.85, 27.01),
-  T = c(0.00, 149.24, 253.05, 354.49, 412.49, 530.07, 539.68, 566.30, 573.54, 598.33,
-        612.63, 567.48, 561.10, 564.47, 541.50, 536.92, 440.32, 338.78, 185.03, 31.13)
+  Ref = c(0.00, 221.23, 377.19, 494.73, 555.74,
+          623.86, 615.45, 663.38, 660.29, 621.71,
+          650.33, 622.28, 626.72, 574.94, 610.51,
+          554.02, 409.14, 299.76, 162.85, 27.01),
+  Test = c(0.00, 149.24, 253.05, 354.49, 412.49,
+           530.07, 539.68, 566.30, 573.54, 598.33,
+           612.63, 567.48, 561.10, 564.47, 541.50,
+           536.92, 440.32, 338.78, 185.03, 31.13)
 )
-f2.Cmax(dta_piv, Time = 'Time', Ref = 'R', Test = 'T')
+# Cmax f2 factor can be calculated as:
+f2.Cmax(dta_piv, Time = 'Time', Ref = 'Ref', Test = 'Test')
 
-# when treatment data is stacked:
+# For a dataframe with concentration-time data for Test and Reference product
+# with treatment information stacked:
 dta_stk <- data.frame(
   Time = rep(c(0, 0.25, 0.5, 0.75, 1, 1.5, 1.75, 2, 2.25, 2.5,
                2.75, 3, 3.25, 3.5, 3.75, 4, 6, 8, 12, 24),2),
   Trt = c(rep('R',20), rep('T',20)),
-  Conc = c(c(0.00, 221.23, 377.19, 494.73, 555.74, 623.86, 615.45, 663.38, 660.29, 621.71,
-             650.33, 622.28, 626.72, 574.94, 610.51, 554.02, 409.14, 299.76, 162.85, 27.01),
-         c(0.00, 149.24, 253.05, 354.49, 412.49, 530.07, 539.68, 566.30, 573.54, 598.33,
-           612.63, 567.48, 561.10, 564.47, 541.50, 536.92, 440.32, 338.78, 185.03, 31.13))
+  Conc = c(c(0.00, 221.23, 377.19, 494.73, 555.74,
+             623.86, 615.45, 663.38, 660.29, 621.71,
+             650.33, 622.28, 626.72, 574.94, 610.51,
+             554.02, 409.14, 299.76, 162.85, 27.01),
+           c(0.00, 149.24, 253.05, 354.49, 412.49,
+             530.07, 539.68, 566.30, 573.54, 598.33,
+             612.63, 567.48, 561.10, 564.47, 541.50,
+             536.92, 440.32, 338.78, 185.03, 31.13))
 )
+# Cmax f2 factor can be calculated as:
 f2.Cmax(dta_stk, Time = 'Time', Conc = 'Conc',
         Trt = 'Trt', Ref = 'R', Test = 'T', Trt.cols = FALSE)
 
@@ -113,8 +132,8 @@ Alternative Analysis Approaches for the Assessment of Pilot Bioavailability/Bioe
 \href{https://doi.org/10.3390/pharmaceutics15051430}{10.3390/pharmaceutics15051430}.
 
 Henriques, S.C.; Paixão, P.; Almeida, L.; Silva, N.E. (2023).
-Predictive Potential of \eqn{C_{\text{max}}} Bioequivalence in Pilot Bioavailability/Bioequivalence Studies,
-through the Alternative \eqn{f_2} Similarity Factor Method. \emph{Pharmaceutics}. \emph{15}(10), 2498.
+Predictive Potential of \eqn{C_{\text{max}}} Bioequivalence in Pilot Bioavailability/Bioequivalence
+Studies, through the Alternative \eqn{f_2} Similarity Factor Method. \emph{Pharmaceutics}. \emph{15}(10), 2498.
 \href{https://doi.org/10.3390/pharmaceutics15102498}{10.3390/pharmaceutics15102498}.
 }
 \author{
