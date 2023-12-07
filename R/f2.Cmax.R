@@ -50,9 +50,9 @@
 #'   \left(\overline{R}_t^N - \overline{T}_t^N\right)^2 \right]^{-0.5} \right)
 #' }
 #' where \eqn{C_{\text{max}} {f_2}} is the similarity factor calculated for \eqn{C_{\text{max}}},
-#' \eqn{n} is the number of time points until Reference \eqn{t_{\text{max}}}, and \eqn{{\overline{R}_t^N}}
-#' and \eqn{{\overline{T}_t^N}} are the are the normalized concentration at time \eqn{t} for Reference and
-#' Test products, respectively.
+#' \eqn{n} is the number of time points (not including 0) until Reference \eqn{t_{\text{max}}},
+#' and \eqn{{\overline{R}_t^N}} and \eqn{{\overline{T}_t^N}} are the are the normalized concentration
+#' at time \eqn{t} for Reference and Test products, respectively.
 #'
 #' @author Sara Carolina Henriques
 #'

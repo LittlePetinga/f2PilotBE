@@ -26,7 +26,7 @@ knitr::opts_chunk$set(
 [![Project Status: Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Paper f2 BE](https://img.shields.io/badge/Scientific%20Paper-Part%201-9D1781)](https://doi.org/10.3390/pharmaceutics15051430)
 [![Paper f2 BE](https://img.shields.io/badge/Scientific%20Paper-Part%202-9D172A)](https://doi.org/10.3390/pharmaceutics15102498)
-[![R badge](https://img.shields.io/badge/Build%20with-♥%20and%20R-E0218A)](https://github.com/LittlePetinga/f2PilotBE)
+[![R badge](https://img.shields.io/badge/Build%20with-♥%20and%20R-E0218A)](https://cdn.dribbble.com/users/6620596/screenshots/14792345/media/af61fa935b055891cb800a9e41ebb747.gif)
 <!-- [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/f2PilotBE)](https://cran.r-project.org/package=f2PilotBE) 
 [![f2PilotBE badge](https://img.shields.io/badge/f2PilotBE-Ready%20to%20Use-brightgreen)](https://github.com/LittlePetinga/f2PilotBE) -->
 <!-- badges: end -->
@@ -55,7 +55,7 @@ The similarity *f*~2~ factor, proposed by Moore and Flanner in 1996 [<a href="#r
 
 $$f_{2}=50\cdot\log\biggl(100\cdot\biggl[1+\frac{1}{n}\sum_{t=1}^{t=n}{(\bar{R}_{t}-\bar{T}_{t})^2} \biggr]^{-0.5}\biggr)$$
 
-where $f_{2}$ is the similarity factor, $n$ is the number of time points, and \(\bar{R}_{t}\) $\bar{R}_{t}$ and $\bar{T}_{t}$ are the mean percentage of drug dissolved at time $t$, for Reference and Test products respectively [<a href="#references">3</a>].
+where $f_{2}$ is the similarity factor, $n$ is the number of time points, and $\bar{R}_{t}$ and $\bar{T}_{t}$ are the mean percentage of drug dissolved at time $t$, for Reference and Test products respectively [<a href="#references">3</a>].
 
 The *f*~2~ similarity factor ranges from 0 (when $\bar{R}_{t}-\bar{T}_{t}=100\%$, at all $t$) to 100 (when $\bar{R}_{t}-\bar{T}_{t}= 0\%$, at all $t$) [<a href="#references">3</a>].
 
@@ -126,7 +126,7 @@ where $n$ is the number of time points until Reference $t_{max}$, and $R_{t}^{N}
 
 For the planning of pilot BA/BE studies, a decision tree is proposed (<a href="#fig2">Figure 2</a>, from Henriques *et al.* (2023) [<a href="#references">2</a>]).
 
-For drug products with a known Intra-Subject Coefficient of Variation (ISCV%) below 20%, the authors propose the estimation of the sample size for a pilot study assuming a Test-to-Reference Geometric Least Square Mean Ratio (GMR) of 100%, a power of 80%, and an α of 0.05 [<a href="#references">1</a>, <a href="#references">2</a>].
+For drug products with a known Intra-Subject Coefficient of Variation (ISCV%) below 20%, the authors propose the estimation of the sample size for a pilot study assuming a Test-to-Reference Geometric Least Square Mean Ratio (GMR) of 100%, a power of 80%, and an α of 0.05 [<a href="#references">1</a>,<a href="#references">2</a>].
 However, for cases of higher ISCV% or unknown variability, it is propose the use of a fixed sample size of **20 subjects**, as the use of higher sample sizes has not shown to increase the study power meaningfully, but was sufficient to avoid substantial type I errors [<a href="#references">2</a>].
 
 Regarding the analysis of data from pilot studies, the authors propose to initially analyze the data using the average bioequivalence approach. For the case in which the calculated GMR and the corresponding 90% CI are not within [80.00–125.00]%, the alternative G~mean~ *f*~2~ factor method should be used with a cut off of 35, as it was shown to be a valuable indicator of the potentiality of the Test formulation to be bioequivalent in terms of C~max~:
@@ -147,21 +147,21 @@ Regarding the analysis of data from pilot studies, the authors propose to initia
 
 The `f2PilotBE` is equipped with the following functions to aid in the calculation of the similarity *f*~2~ factor:
 
-* `AUC()`
+* `AUC()` -- calculates the cumulative area under the concentration-time curve (AUC) over time.
 
-* `AUClast()`
+* `AUClast()` -- calculates area under the concentration-time curve (AUC) from time zero to the time of the last measurable concentration (AUC~0-t~).
 
-* `Cmax()`
+* `Cmax()` -- calculates the maximum observed concentration post-dose (C~max~) directly obtained from the observed concentration-time profile.
 
-* `f2.AUC()`
+* `f2.AUC()` -- calculates the *f*~2~ similarity factor for AUC, from concentration data.
 
-* `f2.Cmax()`
+* `f2.Cmax()` -- calculates the *f*~2~ similarity factor for C~max~, from concentration data.
 
-* `f2()`
+* `f2()` -- calculates the *f*~2~ similarity factor, as proposed by Moore and Flanner in 1996.
 
-* `geomean()`
+* `geomean()` -- calculates geometric mean, i.e., the *N*th root of the product of the *N* observations, equivalent to `exp(mean(log(x)))`.
 
-* `Tmax()`
+* `Tmax()` -- calculates the time of the C~max~.
 
 
 ### Installation
@@ -244,6 +244,7 @@ dta_piv <- data.frame(
            612.63, 567.48, 561.10, 564.47, 541.50,
            536.92, 440.32, 338.78, 185.03, 31.13)
  )
+head(dta_piv)
 ```
 
 The *f*~2~ similarity factor for C~max~ can be calculated from the mean concentration-time profiles, applying the `f2.Cmax()` function as follows:
@@ -276,6 +277,8 @@ dta_stk <- data.frame(
              612.63, 567.48, 561.10, 564.47, 541.50,
              536.92, 440.32, 338.78, 185.03, 31.13))
 )
+head(dta_stk)
+tail(dta_stk)
 ```
 
 
@@ -307,6 +310,7 @@ By default, `f2.Cmax()` plots the Reference product in `black`, and the Test pro
 f2.Cmax(dta_piv, Time = "Time", Ref = "Ref", Test = "Test", 
         plot = TRUE, col.R = "darkblue", col.T = "red")
 ```
+
 
 
 ## References

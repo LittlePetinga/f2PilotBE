@@ -38,6 +38,25 @@
 #'     concentrations over time, by Reference \eqn{AUC_{\text{0-t}}}, until \eqn{t_{\text{last}}}
 #'   * `AUC f2 Factor`: dataframe from [f2()] function.
 #'
+#' @details The \eqn{f_2} factor to assess the similarity on the extent of drug absorption
+#' by normalizing Test and Reference mean cumulative AUC over time to the \eqn{AUC_{\text{0-t}}}
+#' derived from the mean Reference profile:
+#' \deqn{
+#'   AUC_{t}^{N} = 100 \cdot \frac{\overline{AUC}_{t}}{AUC_{\text{0-t R}}}
+#' }
+#' where \eqn{AUC_{t}^{N}} is the normalized cumulative AUC at time \eqn{t}, \eqn{\overline{AUC}_{t}}
+#' is the mean (Test or Reference) AUC at time \eqn{t}, and \eqn{AUC_{\text{0-t R}}} is the
+#' \eqn{AUC_{\text{0-t}}} of the Reference mean concentration-time profile.
+#' The similarity \eqn{f_2} factor is calculated as
+#' \deqn{
+#'   AUC_{\text{0-t}} {f_2} = 50 \cdot \log \left( 100 \cdot \left[ 1 + \frac{1}{n} \sum_{t=1}^{t=n}
+#'   \left(\overline{R}_t^N - \overline{T}_t^N\right)^2 \right]^{-0.5} \right)
+#' }
+#' where \eqn{AUC_{\text{0-t}} {f_2}} is the similarity factor calculated for \eqn{AUC_{\text{0-t}}},
+#' \eqn{n} is the number of time points (not including 0), and \eqn{{\overline{R}_t^N}}
+#' and \eqn{{\overline{T}_t^N}} are the are the normalized AUC at time \eqn{t} for Reference and
+#' Test products, respectively.
+#'
 #' @author Sara Carolina Henriques
 #'
 #' @import ggplot2
@@ -171,7 +190,7 @@ f2.AUC <- function(dta, Time = 'Time', Conc = 'Conc',
 
   if (plot) {
 
-    # Plot of normalized concentration over time, until Reference Tmax
+    # Plot of normalized AUC over time
     Norm.plot <- (ggplot(data=Normalized)
                   + geom_line(aes(x = Time,
                                   y = Test,

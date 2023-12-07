@@ -33,7 +33,7 @@ BE](https://img.shields.io/badge/Scientific%20Paper-Part%201-9D1781)](https://do
 [![Paper f2
 BE](https://img.shields.io/badge/Scientific%20Paper-Part%202-9D172A)](https://doi.org/10.3390/pharmaceutics15102498)
 [![R
-badge](https://img.shields.io/badge/Build%20with-♥%20and%20R-E0218A)](https://github.com/LittlePetinga/f2PilotBE)
+badge](https://img.shields.io/badge/Build%20with-♥%20and%20R-E0218A)](https://cdn.dribbble.com/users/6620596/screenshots/14792345/media/af61fa935b055891cb800a9e41ebb747.gif)
 <!-- [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/f2PilotBE)](https://cran.r-project.org/package=f2PilotBE) 
 [![f2PilotBE badge](https://img.shields.io/badge/f2PilotBE-Ready%20to%20Use-brightgreen)](https://github.com/LittlePetinga/f2PilotBE) -->
 <!-- badges: end -->
@@ -76,9 +76,9 @@ points:
 $$f_{2}=50\cdot\log\biggl(100\cdot\biggl[1+\frac{1}{n}\sum_{t=1}^{t=n}{(\bar{R}_{t}-\bar{T}_{t})^2} \biggr]^{-0.5}\biggr)$$
 
 where $f_{2}$ is the similarity factor, $n$ is the number of time
-points, and $\bar{R}_{t}$ $\bar{R}_{t}$ and $\bar{T}_{t}$ are the mean
-percentage of drug dissolved at time $t$, for Reference and Test
-products respectively \[<a href="#references">3</a>\].
+points, and $\bar{R}_{t}$ and $\bar{T}_{t}$ are the mean percentage of
+drug dissolved at time $t$, for Reference and Test products respectively
+\[<a href="#references">3</a>\].
 
 The *f*<sub>2</sub> similarity factor ranges from 0 (when
 $\bar{R}_{t}-\bar{T}_{t}=100\%$, at all $t$) to 100 (when
@@ -157,7 +157,7 @@ For drug products with a known Intra-Subject Coefficient of Variation
 (ISCV%) below 20%, the authors propose the estimation of the sample size
 for a pilot study assuming a Test-to-Reference Geometric Least Square
 Mean Ratio (GMR) of 100%, a power of 80%, and an α of 0.05
-\[<a href="#references">1</a>, <a href="#references">2</a>\]. However,
+\[<a href="#references">1</a>,<a href="#references">2</a>\]. However,
 for cases of higher ISCV% or unknown variability, it is propose the use
 of a fixed sample size of **20 subjects**, as the use of higher sample
 sizes has not shown to increase the study power meaningfully, but was
@@ -208,21 +208,30 @@ analysis of pilot BA/BE studies.
 The `f2PilotBE` is equipped with the following functions to aid in the
 calculation of the similarity *f*<sub>2</sub> factor:
 
-- `AUC()`
+- `AUC()` – calculates the cumulative area under the concentration-time
+  curve (AUC) over time.
 
-- `AUClast()`
+- `AUClast()` – calculates area under the concentration-time curve (AUC)
+  from time zero to the time of the last measurable concentration
+  (AUC<sub>0-t</sub>).
 
-- `Cmax()`
+- `Cmax()` – calculates the maximum observed concentration post-dose
+  (C<sub>max</sub>) directly obtained from the observed
+  concentration-time profile.
 
-- `f2.AUC()`
+- `f2.AUC()` – calculates the *f*<sub>2</sub> similarity factor for AUC,
+  from concentration data.
 
-- `f2.Cmax()`
+- `f2.Cmax()` – calculates the *f*<sub>2</sub> similarity factor for
+  C<sub>max</sub>, from concentration data.
 
-- `f2()`
+- `f2()` – calculates the *f*<sub>2</sub> similarity factor, as proposed
+  by Moore and Flanner in 1996.
 
-- `geomean()`
+- `geomean()` – calculates geometric mean, i.e., the *N*th root of the
+  product of the *N* observations, equivalent to `exp(mean(log(x)))`.
 
-- `Tmax()`
+- `Tmax()` – calculates the time of the C<sub>max</sub>.
 
 ### Installation
 
@@ -319,6 +328,14 @@ dta_piv <- data.frame(
            612.63, 567.48, 561.10, 564.47, 541.50,
            536.92, 440.32, 338.78, 185.03, 31.13)
  )
+head(dta_piv)
+#>   Time    Ref   Test
+#> 1 0.00   0.00   0.00
+#> 2 0.25 221.23 149.24
+#> 3 0.50 377.19 253.05
+#> 4 0.75 494.73 354.49
+#> 5 1.00 555.74 412.49
+#> 6 1.50 623.86 530.07
 ```
 
 The *f*<sub>2</sub> similarity factor for C<sub>max</sub> can be
@@ -364,6 +381,22 @@ dta_stk <- data.frame(
              612.63, 567.48, 561.10, 564.47, 541.50,
              536.92, 440.32, 338.78, 185.03, 31.13))
 )
+head(dta_stk)
+#>   Time Trt   Conc
+#> 1 0.00   R   0.00
+#> 2 0.25   R 221.23
+#> 3 0.50   R 377.19
+#> 4 0.75   R 494.73
+#> 5 1.00   R 555.74
+#> 6 1.50   R 623.86
+tail(dta_stk)
+#>     Time Trt   Conc
+#> 35  3.75   T 541.50
+#> 36  4.00   T 536.92
+#> 37  6.00   T 440.32
+#> 38  8.00   T 338.78
+#> 39 12.00   T 185.03
+#> 40 24.00   T  31.13
 ```
 
 The *f*<sub>2</sub> similarity factor for C<sub>max</sub> can be
