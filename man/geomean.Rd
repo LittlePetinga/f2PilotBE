@@ -21,6 +21,6 @@ observations, equivalent to \code{exp(mean(log(x)))}.
 }
 \examples{
 x <- c(49.66, 53.62, 52.25, 50.44, 46.84, 50.51, 47.26, 48.90, 49.83, 49.67)
-geomean(x, TRUE)
+geomean(x)
 
 }

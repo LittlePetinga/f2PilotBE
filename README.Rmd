@@ -49,7 +49,7 @@ badge](https://img.shields.io/badge/Build%20with-♥%20and%20R-E0218A)](https://
 <img src="man/figures/logo.png" align="right" height="240"/>
 
 The `f2PilotBE` package is designed to calculate the similarity factor
-*f*~2~ based on pharmacokinetic profiles from pilot
+*ƒ*~2~ based on pharmacokinetic profiles from pilot
 bioavailability/bioequivalence (BA/BE) studies, as an alternative
 approach to assess the potential of bioequivalence of a Test product in
 comparison to a Reference product in terms of maximum observed
@@ -58,9 +58,9 @@ concentration (C~max~) and area under the concentration-time curve
 
 This package is based on the publications of Henriques *et al.* (2023)
 [<a href="#references">1</a>,<a href="#references">2</a>], which propose
-the use of the geometric mean (G~mean~) *f*~2~ factor, for the
+the use of the geometric mean (G~mean~) *ƒ*~2~ factor, for the
 comparison of the absorption rate (given by C~max~) of Test and
-Reference formulations. According to the articles, G~mean~ *f*~2~ factor
+Reference formulations. According to the articles, G~mean~ *ƒ*~2~ factor
 using a cut-off of 35 showed a good relationship between avoiding type I
 and type II errors
 [<a href="#references">1</a>,<a href="#references">2</a>].
@@ -73,13 +73,13 @@ load_all()
 
 ## 1. Background
 
-### 1.1. The Similarity f2 Factor
+### 1.1. The Similarity ƒ2 Factor
 
-The similarity *f*~2~ factor is a mathematical index widely used to
+The similarity *ƒ*~2~ factor is a mathematical index widely used to
 compare dissolution profiles, evaluating their similarity, using the
 percentage of drug dissolved per unit of time.
 
-The similarity *f*~2~ factor, proposed by Moore and Flanner in 1996
+The similarity *ƒ*~2~ factor, proposed by Moore and Flanner in 1996
 [<a href="#references">3</a>], is derived from the mean squared
 difference, and can be calculated as a function of the reciprocal of
 mean squared-root transformation of the sum of square differences at all
@@ -92,17 +92,17 @@ points, and $\bar{R}_{t}$ and $\bar{T}_{t}$ are the mean percentage of
 drug dissolved at time $t$, for Reference and Test products respectively
 [<a href="#references">3</a>].
 
-The *f*~2~ similarity factor ranges from 0 (when
+The *ƒ*~2~ similarity factor ranges from 0 (when
 $\bar{R}_{t}-\bar{T}_{t}=100\%$, at all $t$) to 100 (when
 $\bar{R}_{t}-\bar{T}_{t}= 0\%$, at all $t$)
 [<a href="#references">3</a>].
 
 <a href="#fig1">Figure 1</a> (from Henriques *et al.* (2023)
-[<a href="#references">1</a>]) presents the distribution of *f*~2~
-similarity factor as a function of mean difference. Form the *f*~2~
+[<a href="#references">1</a>]) presents the distribution of *ƒ*~2~
+similarity factor as a function of mean difference. Form the *ƒ*~2~
 equation, an average difference of [10%]{style="color: red;"},
 [15%]{style="color: green;"}, and [20%]{style="color: blue;"} from all
-measured time points results in a *f*~2~ value of
+measured time points results in a *ƒ*~2~ value of
 [50]{style="color: red;"} (red dotted lines),
 [41]{style="color: green;"} (green dotted lines) and
 [35]{style="color: blue;"} (blue dotted lines), respectively.
@@ -168,14 +168,15 @@ print(ggplot(f2.factor,
               legend.position = "bottom"))
 ```
 
+
 As proposed by Henriques *et al.* (2023), the concept of similarity
-factor *f*~2~ can be applied as an alternative to the average
+factor *ƒ*~2~ can be applied as an alternative to the average
 bioequivalence analysis, for pilot BA/BE studies
 [<a href="#references">1</a>,<a href="#references">2</a>].
 
-### 1.2. Cmax Similarity f2 Factor
+### 1.2. Cmax Similarity ƒ2 Factor
 
-*f*~2~ can be used to assess the similarity on the rate of drug absorption by normalizing Test and Reference mean concentration-time profiles to the maximum plasma concentration (C~max~) derived from the mean Reference profile, until Reference C~max~ is observed (Reference t~max~) [<a href="#references">1</a>,<a href="#references">2</a>] (<a href="#fig2">Figure 2</a>):
+*ƒ*~2~ can be used to assess the similarity on the rate of drug absorption by normalizing Test and Reference mean concentration-time profiles to the maximum plasma concentration (C~max~) derived from the mean Reference profile, until Reference C~max~ is observed (Reference t~max~) [<a href="#references">1</a>,<a href="#references">2</a>] (<a href="#fig2">Figure 2</a>):
 
 <!-- Figure Estimation Cmax f2 Factor -->
 
@@ -189,9 +190,10 @@ factor from mean concentration-time profiles.</figcaption>
 <!-- $0 \le t \le t_{max,R}$, -->
 where $C_{t}^{N}$ is the normalized concentration at time $t$, $\bar{C}_{t}$ is the mean (Test or Reference) concentration at time $t$, $C_{max,R}$ is the C~max~ of the Reference mean concentration-time profile, and $t_{max,R}$ the time of observation of $C_{max,R}$. 
 
-The similarity *f*~2~ factor is calculated as
+The similarity *ƒ*~2~ factor is calculated as
 
 $$C_{max}f_{2}=50\cdot\ log \biggl(100\cdot \biggl[1+\frac{1}{n} \sum_{t=1}^{t=n}{(R_{t}^{N} - T_{t}^{N})^2} \biggr]^{-0.5} \biggr)$$
+
 
 where $n$ is the number of time points until Reference $t_{max}$, and $R_{t}^{N}$ and $T_{t}^{N}$ are the normalized concentration at time $t$, for Reference and Test products respectively.
 
@@ -215,12 +217,12 @@ sufficient to avoid substantial type I errors
 Regarding the analysis of data from pilot studies, the authors propose
 to initially analyze the data using the average bioequivalence approach.
 For the case in which the calculated GMR and the corresponding 90% CI
-are not within [80.00–125.00]%, the alternative G~mean~ *f*~2~ factor
+are not within [80.00–125.00]%, the alternative G~mean~ *ƒ*~2~ factor
 method should be used with a cut off of 35, as it was shown to be a
 valuable indicator of the potentiality of the Test formulation to be
 bioequivalent in terms of C~max~:
 
-1.  If the *f*~2~ factor is above or equal to **35** (corresponding to a
+1.  If the *ƒ*~2~ factor is above or equal to **35** (corresponding to a
     difference of 20% between Test and Reference concentration–time
     profiles until the Reference t~max~), the confidence to proceed to a
     pivotal study is higher than 90% when ISCV% is lower or equal to
@@ -228,13 +230,13 @@ bioequivalent in terms of C~max~:
     30%; and the confidence is higher than 60% when ISCV% is higher than
     40% [<a href="#references">2</a>].
 
-2.  If the *f*~2~ factor is above or equal to **41** (corresponding to a
+2.  If the *ƒ*~2~ factor is above or equal to **41** (corresponding to a
     difference of 15% between Test and Reference concentration–time
     profiles until the Reference t~max~), the confidence to proceed to a
     pivotal study is higher than 90% for ISCV% until 40%, and higher
     than 80% for ISCV% within 50% to 60% [<a href="#references">2</a>].
 
-3.  If the *f*~2~ factor is above or equal to **50** (corresponding to a
+3.  If the *ƒ*~2~ factor is above or equal to **50** (corresponding to a
     difference of 10% between Test and Reference concentration–time
     profiles until the Reference t~max~), the probability of the Test
     product to be truly bioequivalent to the Reference product in terms
@@ -254,7 +256,7 @@ planning and analysis of pilot BA/BE studies. From Henriques, S.C. et al. (2023)
 ## 2. The f2PilotBE Package
 
 The `f2PilotBE` is equipped with the following functions to aid in the
-calculation of the similarity *f*~2~ factor:
+calculation of the similarity *ƒ*~2~ factor:
 
 -   `AUC()` -- calculates the cumulative area under the
     concentration-time curve (AUC) over time.
@@ -267,13 +269,13 @@ calculation of the similarity *f*~2~ factor:
     (C~max~) directly obtained from the observed concentration-time
     profile.
 
--   `f2.AUC()` -- calculates the *f*~2~ similarity factor for AUC, from
+-   `f2.AUC()` -- calculates the *ƒ*~2~ similarity factor for AUC, from
     concentration data.
 
--   `f2.Cmax()` -- calculates the *f*~2~ similarity factor for C~max~,
+-   `f2.Cmax()` -- calculates the *ƒ*~2~ similarity factor for C~max~,
     from concentration data.
 
--   `f2()` -- calculates the *f*~2~ similarity factor, as proposed by
+-   `f2()` -- calculates the *ƒ*~2~ similarity factor, as proposed by
     Moore and Flanner in 1996.
 
 -   `geomean()` -- calculates geometric mean, i.e., the *N*th root of
@@ -317,7 +319,7 @@ library("f2PilotBE")
 #### 2.2.2. Calculate Geometric Mean Concentration
 
 As proposed by the authors
-[<a href="#references">1</a>,<a href="#references">2</a>], the *f*~2~
+[<a href="#references">1</a>,<a href="#references">2</a>], the *ƒ*~2~
 similarity factor should be calculated from the arithmetic (A~mean~) or
 geometric (G~mean~) concentration-time profiles.
 
@@ -348,9 +350,9 @@ If the user prefers to use the A~mean~, instead of the G~mean~
 concentration-time data, simply replace the function `geomean`, with the
 function `mean` from base `R`.
 
-#### 2.2.3. Calculate Cmax Similarity f2 Factor
+#### 2.2.3. Calculate Cmax Similarity ƒ2 Factor
 
-The `f2.Cmax()` function allows to calculate the *f*~2~ similarity
+The `f2.Cmax()` function allows to calculate the *ƒ*~2~ similarity
 factor for C~max~, from Test and Reference mean concentration-time
 profiles.
 
@@ -380,7 +382,7 @@ dta_piv <- data.frame(
 head(dta_piv)
 ```
 
-The *f*~2~ similarity factor for C~max~ can be calculated from the mean
+The *ƒ*~2~ similarity factor for C~max~ can be calculated from the mean
 concentration-time profiles, applying the `f2.Cmax()` function as
 follows:
 
@@ -426,7 +428,7 @@ head(dta_stk)
 tail(dta_stk)
 ```
 
-The *f*~2~ similarity factor for C~max~ can be calculated from the mean
+The *ƒ*~2~ similarity factor for C~max~ can be calculated from the mean
 concentration-time profiles, applying the `f2.Cmax()` function as
 follows:
 
@@ -484,7 +486,7 @@ f2.Cmax(dta_piv, Time = "Time", Ref = "Ref", Test = "Test",
 2.  Henriques, S.C.; Paixão, P.; Almeida, L.; Silva, N.E. (2023).
     Predictive Potential of C~max~ Bioequivalence in Pilot
     Bioavailability/Bioequivalence Studies, through the Alternative
-    *f*~2~ Similarity Factor Method. *Pharmaceutics*. *15*(10), 2498.
+    *ƒ*~2~ Similarity Factor Method. *Pharmaceutics*. *15*(10), 2498.
     [10.3390/pharmaceutics15102498](https://doi.org/10.3390/pharmaceutics15102498).
 
 3.  Moore, J.W.; Flanner, H.H. (1996). Mathematical Comparison of Curves

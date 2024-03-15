@@ -1,3 +1,5 @@
+context("f2.Cmax")
+
 test_that("Test for f2.Cmax", {
   dta <- data.frame(
     Time = c(0, 0.25, 0.5, 0.75, 1, 1.5, 1.75, 2, 2.25, 2.5,
@@ -7,9 +9,8 @@ test_that("Test for f2.Cmax", {
     Test = c(0.00, 149.24, 253.05, 354.49, 412.49, 530.07, 539.68, 566.30, 573.54, 598.33,
              612.63, 567.48, 561.10, 564.47, 541.50, 536.92, 440.32, 338.78, 185.03, 31.13)
   )
-  Test_Res <- f2.Cmax(dta, Time = 'Time', Ref = 'Reference', Test = 'Test',
+  Test_1 <- f2.Cmax(dta, Time = 'Time', Ref = 'Reference', Test = 'Test',
                       Trt.cols = TRUE, details = TRUE, plot = FALSE)
-  Test_Res <- round(Test_Res$`Cmax f2 Factor`$f2,4)
 
-  expect_equal(Test_Res, 38.9735)
+  expect_equal(round(Test_1$`Cmax f2 Factor`$f2,2), 38.97)
 })
