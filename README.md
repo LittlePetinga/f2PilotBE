@@ -1,20 +1,20 @@
 f2PilotBE
 ================
 
-- [Background](#background)
-  - [The Similarity f2 Factor](#the-similarity-f2-factor)
-  - [Cmax Similarity f2 Factor](#cmax-similarity-f2-factor)
-  - [Bioequivalence Evaluation of Pilot
-    Studies](#bioequivalence-evaluation-of-pilot-studies)
-- [The f2PilotBE Package](#the-f2pilotbe-package)
-  - [Installation](#installation)
-    - [From GitHub](#from-github)
-  - [Examples](#examples)
-    - [Load Package](#load-package)
-    - [Calculate Geometric Mean
-      Concentration](#calculate-geometric-mean-concentration)
-    - [Calculate Cmax Similarity f2
-      Factor](#calculate-cmax-similarity-f2-factor)
+- [1. Background](#1-background)
+  - [1.1. The Similarity f2 Factor](#11-the-similarity-f2-factor)
+  - [1.2. Cmax Similarity f2 Factor](#12-cmax-similarity-f2-factor)
+  - [1.3. Bioequivalence Evaluation of Pilot
+    Studies](#13-bioequivalence-evaluation-of-pilot-studies)
+- [2. The f2PilotBE Package](#2-the-f2pilotbe-package)
+  - [2.1. Installation](#21-installation)
+    - [2.1.1. From GitHub](#211-from-github)
+  - [2.2. Examples](#22-examples)
+    - [2.2.1. Load Package](#221-load-package)
+    - [2.2.2. Calculate Geometric Mean
+      Concentration](#222-calculate-geometric-mean-concentration)
+    - [2.2.3. Calculate Cmax Similarity f2
+      Factor](#223-calculate-cmax-similarity-f2-factor)
 - [References](#references)
 
 <!-- badges: start -->
@@ -22,25 +22,29 @@ f2PilotBE
 
 [![License:
 GPL-3.0-or-later](https://img.shields.io/badge/License-GPL--3.0--or--later-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
-[![repo](https://img.shields.io/badge/Repo%20Since-Nov%202023-yellow)](https://github.com/LittlePetinga/f2PilotBE)
-[![Version](https://img.shields.io/badge/Version-0.0.1-blue)](https://github.com/LittlePetinga/f2PilotBE)
+[![repo](https://img.shields.io/badge/Repo%20Since-Nov%202023-ffcc00)](https://github.com/LittlePetinga/f2PilotBE)
+[![Version](https://img.shields.io/badge/Version-0.1.0-00b5a3)](https://github.com/LittlePetinga/f2PilotBE)
 [![Last
-Update](https://img.shields.io/badge/Last%20Update-11%20Nov%202023-green)](https://github.com/LittlePetinga/f2PilotBE)
+Update](https://img.shields.io/badge/Last%20Update-15%20Mar%202024-3cb371)](https://github.com/LittlePetinga/f2PilotBE)
 [![Project Status:
 Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![R-CMD-check](https://github.com/LittlePetinga/f2PilotBE/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/LittlePetinga/f2PilotBE/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/LittlePetinga/f2PilotBE/branch/master/graph/badge.svg)](https://app.codecov.io/gh/LittlePetinga/f2PilotBE?branch=master)
 [![Paper f2
-BE](https://img.shields.io/badge/Scientific%20Paper-Part%201-9D1781)](https://doi.org/10.3390/pharmaceutics15051430)
+BE](https://img.shields.io/badge/Scientific%20Paper-Part%201-d93467)](https://doi.org/10.3390/pharmaceutics15051430)
 [![Paper f2
-BE](https://img.shields.io/badge/Scientific%20Paper-Part%202-9D172A)](https://doi.org/10.3390/pharmaceutics15102498)
+BE](https://img.shields.io/badge/Scientific%20Paper-Part%202-0074cc)](https://doi.org/10.3390/pharmaceutics15102498)
+[![ModelBio](https://img.shields.io/badge/Presentation-ModelBio%202024-8a4bd9)](https://www.researchgate.net/publication/378769367_Pilot_BioavailabilityBioequivalence_Studies_Revisited_With_An_Alternative_f2_Factor_Approach)
 [![R
 badge](https://img.shields.io/badge/Build%20with-♥%20and%20R-E0218A)](https://cdn.dribbble.com/users/6620596/screenshots/14792345/media/af61fa935b055891cb800a9e41ebb747.gif)
 <!-- [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/f2PilotBE)](https://cran.r-project.org/package=f2PilotBE) 
 [![f2PilotBE badge](https://img.shields.io/badge/f2PilotBE-Ready%20to%20Use-brightgreen)](https://github.com/LittlePetinga/f2PilotBE) -->
-<!-- badges: end -->
 
+<!-- badges: end -->
 <!-- Hex Sticker -->
 
-<img src="man/figures/logo.png" align="right" height="240">
+<img src="man/figures/logo.png" align="right" height="240"/>
 
 The `f2PilotBE` package is designed to calculate the similarity factor
 *f*<sub>2</sub> based on pharmacokinetic profiles from pilot
@@ -59,9 +63,9 @@ articles, G<sub>mean</sub> *f*<sub>2</sub> factor using a cut-off of 35
 showed a good relationship between avoiding type I and type II errors
 \[<a href="#references">1</a>,<a href="#references">2</a>\].
 
-## Background
+## 1. Background
 
-### The Similarity f2 Factor
+### 1.1. The Similarity f2 Factor
 
 The similarity *f*<sub>2</sub> factor is a mathematical index widely
 used to compare dissolution profiles, evaluating their similarity, using
@@ -99,7 +103,9 @@ results in a *f*<sub>2</sub> value of
 
 <!-- Figure from article (Part 1) -->
 <figure>
-<img src="https://pub.mdpi-res.com/pharmaceutics/pharmaceutics-15-01430/article_deploy/html/images/pharmaceutics-15-01430-g002.png?1683533911" alt="Image Description" height="400">
+
+<img src="https://pub.mdpi-res.com/pharmaceutics/pharmaceutics-15-01430/article_deploy/html/images/pharmaceutics-15-01430-g002.png?1683533911" alt="Image Description" height="400"/>
+
 <figcaption>
 Figure 1. <a name="fig1"></a> Distribution of ƒ<sub>2</sub> similarity
 factor as a function of mean difference. ƒ<sub>2</sub> similarity factor
@@ -112,10 +118,11 @@ the sum of square differences at all points. An average difference of
 results in a ƒ<sub>2</sub> value of <span style="color: red;">50</span>
 (red dotted lines), <span style="color: green;">41</span> (green dotted
 lines) and <span style="color: blue;">35</span> (blue dotted lines),
-respectively.
+respectively. From Henriques, S.C. et al. (2023). Pharmaceutics, 15(5),
+1430 (DOI: 10.3390/pharmaceutics15051430).
 </figcaption>
 </figure>
-<!-- Code for plot of distribution of ƒ~2~ similarity factor as a function of mean difference -->
+<!-- Code to plot distribution of ƒ~2~ similarity factor as a function of mean difference -->
 <!-- Not run -->
 
 As proposed by Henriques *et al.* (2023), the concept of similarity
@@ -123,23 +130,34 @@ factor *f*<sub>2</sub> can be applied as an alternative to the average
 bioequivalence analysis, for pilot BA/BE studies
 \[<a href="#references">1</a>,<a href="#references">2</a>\].
 
-### Cmax Similarity f2 Factor
+### 1.2. Cmax Similarity f2 Factor
 
 *f*<sub>2</sub> can be used to assess the similarity on the rate of drug
 absorption by normalizing Test and Reference mean concentration-time
 profiles to the maximum plasma concentration (C<sub>max</sub>) derived
 from the mean Reference profile, until Reference C<sub>max</sub> is
 observed (Reference t<sub>max</sub>)
-\[<a href="#references">1</a>,<a href="#references">2</a>\]:
+\[<a href="#references">1</a>,<a href="#references">2</a>\]
+(<a href="#fig2">Figure 2</a>):
 
-$$C_{t}^{N}=100\cdot\frac{\bar{C}_{t}}{C_{max,R}}$$, where
-$0 \le t \le t_{max,R}$,
+<!-- Figure Estimation Cmax f2 Factor -->
+<figure>
+<img src="man/figures/Cmaxf2_1.png"/>
+<figcaption>
+Figure 2. <a name="fig2"></a> Estimation of ƒ<sub>2</sub> similarity
+factor from mean concentration-time profiles.
+</figcaption>
+</figure>
+<!-- $$C_{t}^{N}=100\cdot\frac{\bar{C}_{t}}{C_{max,R}}$$, where -->
+<!-- $0 \le t \le t_{max,R}$, -->
 
 where $C_{t}^{N}$ is the normalized concentration at time $t$,
 $\bar{C}_{t}$ is the mean (Test or Reference) concentration at time $t$,
 $C_{max,R}$ is the C<sub>max</sub> of the Reference mean
 concentration-time profile, and $t_{max,R}$ the time of observation of
-$C_{max,R}$. The similarity *f*<sub>2</sub> factor is calculated as
+$C_{max,R}$.
+
+The similarity *f*<sub>2</sub> factor is calculated as
 
 $$C_{max}f_{2}=50\cdot\ log \biggl(100\cdot \biggl[1+\frac{1}{n} \sum_{t=1}^{t=n}{(R_{t}^{N} - T_{t}^{N})^2} \biggr]^{-0.5} \biggr)$$
 
@@ -147,10 +165,10 @@ where $n$ is the number of time points until Reference $t_{max}$, and
 $R_{t}^{N}$ and $T_{t}^{N}$ are the normalized concentration at time
 $t$, for Reference and Test products respectively.
 
-### Bioequivalence Evaluation of Pilot Studies
+### 1.3. Bioequivalence Evaluation of Pilot Studies
 
 For the planning of pilot BA/BE studies, a decision tree is proposed
-(<a href="#fig2">Figure 2</a>, from Henriques *et al.* (2023)
+(<a href="#fig3">Figure 3</a>, from Henriques *et al.* (2023)
 \[<a href="#references">2</a>\]).
 
 For drug products with a known Intra-Subject Coefficient of Variation
@@ -196,14 +214,17 @@ formulation to be bioequivalent in terms of C<sub>max</sub>:
     the ISCV% \[<a href="#references">2</a>\].
 
 <figure>
-<img src="https://www.mdpi.com/pharmaceutics/pharmaceutics-15-02498/article_deploy/html/images/pharmaceutics-15-02498-g013.png" alt="Image Description" height="800">
+
+<img src="https://www.mdpi.com/pharmaceutics/pharmaceutics-15-02498/article_deploy/html/images/pharmaceutics-15-02498-g013.png" alt="Image Description" height="800"/>
+
 <figcaption>
-Figure 2. <a name="fig2"></a> Proposed decision tree for planning and
-analysis of pilot BA/BE studies.
+Figure 3. <a name="fig3"></a> Proposed decision tree for planning and
+analysis of pilot BA/BE studies. From Henriques, S.C. et al. (2023).
+Pharmaceutics, 15(10), 2498 (DOI: 10.3390/pharmaceutics15102498).
 </figcaption>
 </figure>
 
-## The f2PilotBE Package
+## 2. The f2PilotBE Package
 
 The `f2PilotBE` is equipped with the following functions to aid in the
 calculation of the similarity *f*<sub>2</sub> factor:
@@ -233,9 +254,9 @@ calculation of the similarity *f*<sub>2</sub> factor:
 
 - `Tmax()` – calculates the time of the C<sub>max</sub>.
 
-### Installation
+### 2.1. Installation
 
-#### From GitHub
+#### 2.1.1. From GitHub
 
 To install the development version of `f2PilotBE`, start by installing
 the `devtools` package from CRAN:
@@ -252,9 +273,9 @@ library(devtools)
 install_github("LittlePetinga/f2PilotBE")
 ```
 
-### Examples
+### 2.2. Examples
 
-#### Load Package
+#### 2.2.1. Load Package
 
 Following installation, load the `f2PilotBE` package and the `ggplot2`
 package.
@@ -265,7 +286,7 @@ library("ggplot2")      # required for plotting
 library("f2PilotBE")
 ```
 
-#### Calculate Geometric Mean Concentration
+#### 2.2.2. Calculate Geometric Mean Concentration
 
 As proposed by the authors
 \[<a href="#references">1</a>,<a href="#references">2</a>\], the
@@ -299,7 +320,7 @@ If the user prefers to use the A<sub>mean</sub>, instead of the
 G<sub>mean</sub> concentration-time data, simply replace the function
 `geomean`, with the function `mean` from base `R`.
 
-#### Calculate Cmax Similarity f2 Factor
+#### 2.2.3. Calculate Cmax Similarity f2 Factor
 
 The `f2.Cmax()` function allows to calculate the *f*<sub>2</sub>
 similarity factor for C<sub>max</sub>, from Test and Reference mean
