@@ -1,13 +1,6 @@
 library(testthat)
 library(f2PilotBE)
 
-# Load data from CSV file
-Conc1 <- read.csv(system.file("data", "Conc1.csv", package = "f2PilotBE"))
-Conc2 <- read.csv(system.file("data", "Conc2.csv", package = "f2PilotBE"))
-Conc3 <- read.csv(system.file("data", "Conc3.csv", package = "f2PilotBE"))
-Conc4 <- read.csv(system.file("data", "Conc4.csv", package = "f2PilotBE"))
-Conc5 <- read.csv(system.file("data", "Conc5.csv", package = "f2PilotBE"))
-
 
 # Test f2.Cmax function
 test_that("Test for f2.Cmax", {
