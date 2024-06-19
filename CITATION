@@ -1,0 +1,53 @@
+citHeader("To cite package 'f2PilotBE' in publications use:")
+
+# Citation for the package itself
+citEntry(
+  entry = "Manual",
+  title = "f2PilotBE: f2 Factor Alternative Approach for Pilot Bioequivalence Studies",
+  author = c(
+    person("Sara Carolina", "Henriques"),
+    person("Nuno Elvas", "Silva")
+  ),
+  year = "2024",
+  note = "R package version 0.1.0",
+  url = "https://github.com/LittlePetinga/f2PilotBE"
+)
+
+# Citation for the first journal publication testing the f2 factor method
+citEntry(
+  entry = "Article",
+  title = "Alternative Analysis Approaches for the Assessment of Pilot Bioavailability/Bioequivalence Studies",
+  author = c(
+    person("Sara Carolina", "Henriques"),
+    person("João", "Albuquerque"),
+    person("Paulo", "Paixão"),
+    person("Luis", "Almeida"),
+    person("Nuno Elvas", "Silva")
+  ),
+  year = "2023",
+  journal = "Pharmaceutics",
+  volume = "15",
+  number = "5",
+  pages = "1430",
+  doi = "10.3390/pharmaceutics15051430"
+)
+
+# Citation for the latest publication testing the f2 factor method
+citEntry(
+  entry = "Article",
+  title = "Predictive Potential of Cmax Bioequivalence in Pilot Bioavailability/Bioequivalence Studies, through the Alternative ƒ2 Similarity Factor Method",
+  author = c(
+    person("Sara Carolina", "Henriques"),
+    person("Paulo", "Paixão"),
+    person("Luis", "Almeida"),
+    person("Nuno Elvas", "Silva")
+  ),
+  year = "2023",
+  journal = "Pharmaceutics",
+  volume = "15",
+  number = "10",
+  pages = "2498",
+  doi = "10.3390/pharmaceutics15102498"
+)
+
+citFooter("Please use the URL to ensure you are citing the most recent version.")
