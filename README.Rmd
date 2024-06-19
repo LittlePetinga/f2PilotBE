@@ -20,7 +20,8 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 
-<!-- ![GitHub Actions Status](https://github.com/LittlePetinga/f2PilotBE/workflows/R-CMD-check/badge.svg) -->
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/f2PilotBE)](https://cran.r-project.org/package=f2PilotBE)
+[![f2PilotBE badge](https://img.shields.io/badge/f2PilotBE-Ready%20to%20Use-brightgreen)](https://github.com/LittlePetinga/f2PilotBE)
 [![License:
 GPL-3.0-or-later](https://img.shields.io/badge/License-GPL--3.0--or--later-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![repo](https://img.shields.io/badge/Repo%20Since-Nov%202023-ffcc00)](https://github.com/LittlePetinga/f2PilotBE)
@@ -39,8 +40,6 @@ BE](https://img.shields.io/badge/Scientific%20Paper-Part%202-0074cc)](https://do
 [![ModelBio](https://img.shields.io/badge/Presentation-ModelBio%202024-8a4bd9)](https://www.researchgate.net/publication/378769367_Pilot_BioavailabilityBioequivalence_Studies_Revisited_With_An_Alternative_f2_Factor_Approach)
 [![R
 badge](https://img.shields.io/badge/Build%20with-♥%20and%20R-E0218A)](https://cdn.dribbble.com/users/6620596/screenshots/14792345/media/af61fa935b055891cb800a9e41ebb747.gif)
-<!-- [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/f2PilotBE)](https://cran.r-project.org/package=f2PilotBE) 
-[![f2PilotBE badge](https://img.shields.io/badge/f2PilotBE-Ready%20to%20Use-brightgreen)](https://github.com/LittlePetinga/f2PilotBE) -->
 
 <!-- badges: end -->
 
@@ -480,13 +479,13 @@ f2.Cmax(dta_piv, Time = "Time", Ref = "Ref", Test = "Test",
 1.  Henriques, S.C.; Albuquerque, J.; Paixão, P.; Almeida, L.; Silva,
     N.E. (2023). Alternative Analysis Approaches for the Assessment of
     Pilot Bioavailability/Bioequivalence Studies. *Pharmaceutics*.
-    *15*(5), 1430.
+    *15*(5), 1430. DOI: 
     [10.3390/pharmaceutics15051430](https://doi.org/10.3390/pharmaceutics15051430).
 
 2.  Henriques, S.C.; Paixão, P.; Almeida, L.; Silva, N.E. (2023).
     Predictive Potential of C~max~ Bioequivalence in Pilot
     Bioavailability/Bioequivalence Studies, through the Alternative
-    *ƒ*~2~ Similarity Factor Method. *Pharmaceutics*. *15*(10), 2498.
+    *ƒ*~2~ Similarity Factor Method. *Pharmaceutics*. *15*(10), 2498. DOI: 
     [10.3390/pharmaceutics15102498](https://doi.org/10.3390/pharmaceutics15102498).
 
 3.  Moore, J.W.; Flanner, H.H. (1996). Mathematical Comparison of Curves

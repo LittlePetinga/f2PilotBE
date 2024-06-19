@@ -12,6 +12,7 @@ Description: Contains functions to calculate the similarity factor f2
     studies, as an alternative approach to assess the potential of bioequivalence
     of a Test product in comparison to a Reference product in terms of Cmax and AUC.
 License: GPL (>= 3)
+LazyData: true
 URL: https://github.com/LittlePetinga/f2PilotBE
 BugReports: https://github.com/LittlePetinga/f2PilotBE/issues
 Depends:
