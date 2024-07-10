@@ -20,24 +20,25 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/f2PilotBE)](https://cran.r-project.org/package=f2PilotBE)
+<!-- [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/f2PilotBE)](https://cran.r-project.org/package=f2PilotBE) -->
+<!-- [![Codecov test -->
+<!-- coverage](https://codecov.io/gh/LittlePetinga/f2PilotBE/branch/master/graph/badge.svg)](https://app.codecov.io/gh/LittlePetinga/f2PilotBE?branch=master) -->
 [![f2PilotBE badge](https://img.shields.io/badge/f2PilotBE-Ready%20to%20Use-brightgreen)](https://github.com/LittlePetinga/f2PilotBE)
 [![License:
 GPL-3.0-or-later](https://img.shields.io/badge/License-GPL--3.0--or--later-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
-[![repo](https://img.shields.io/badge/Repo%20Since-Nov%202023-ffcc00)](https://github.com/LittlePetinga/f2PilotBE)
-[![Version](https://img.shields.io/badge/Version-0.1.0-00b5a3)](https://github.com/LittlePetinga/f2PilotBE)
+[![repo](https://img.shields.io/badge/Repo%20Since-Jan%202024-ffcc00)](https://github.com/LittlePetinga/f2PilotBE)
+[![Version](https://img.shields.io/badge/Version-0.3.0-00b5a3)](https://github.com/LittlePetinga/f2PilotBE)
 [![Last
-Update](https://img.shields.io/badge/Last%20Update-15%20Mar%202024-3cb371)](https://github.com/LittlePetinga/f2PilotBE)
+Update](https://img.shields.io/badge/Last%20Update-10%20Jul%202024-3cb371)](https://github.com/LittlePetinga/f2PilotBE)
 [![Project Status:
 Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![R-CMD-check](https://github.com/LittlePetinga/f2PilotBE/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/LittlePetinga/f2PilotBE/actions/workflows/R-CMD-check.yaml)
-[![Codecov test
-coverage](https://codecov.io/gh/LittlePetinga/f2PilotBE/branch/master/graph/badge.svg)](https://app.codecov.io/gh/LittlePetinga/f2PilotBE?branch=master)
 [![Paper f2
 BE](https://img.shields.io/badge/Scientific%20Paper-Part%201-d93467)](https://doi.org/10.3390/pharmaceutics15051430)
 [![Paper f2
 BE](https://img.shields.io/badge/Scientific%20Paper-Part%202-0074cc)](https://doi.org/10.3390/pharmaceutics15102498)
 [![ModelBio](https://img.shields.io/badge/Presentation-ModelBio%202024-8a4bd9)](https://www.researchgate.net/publication/378769367_Pilot_BioavailabilityBioequivalence_Studies_Revisited_With_An_Alternative_f2_Factor_Approach)
+[![PAGE](https://img.shields.io/badge/Presentation-PAGE%202024-C80815)](https://www.page-meeting.org/?abstract=11251)
 [![R
 badge](https://img.shields.io/badge/Build%20with-♥%20and%20R-E0218A)](https://cdn.dribbble.com/users/6620596/screenshots/14792345/media/af61fa935b055891cb800a9e41ebb747.gif)
 
