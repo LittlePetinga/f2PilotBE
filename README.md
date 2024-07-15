@@ -29,7 +29,7 @@ GPL-3.0-or-later](https://img.shields.io/badge/License-GPL--3.0--or--later-blue.
 [![repo](https://img.shields.io/badge/Repo%20Since-Jan%202024-ffcc00)](https://github.com/saracarolinahenriques/f2PilotBE)
 [![Version](https://img.shields.io/badge/Version-0.4.0-00b5a3)](https://github.com/saracarolinahenriques/f2PilotBE)
 [![Last
-Update](https://img.shields.io/badge/Last%20Update-10%20Jul%202024-3cb371)](https://github.com/saracarolinahenriques/f2PilotBE)
+Update](https://img.shields.io/badge/Last%20Update-15%20Jul%202024-3cb371)](https://github.com/saracarolinahenriques/f2PilotBE)
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
