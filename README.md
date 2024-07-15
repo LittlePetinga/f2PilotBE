@@ -20,19 +20,20 @@ f2PilotBE
 <!-- badges: start -->
 <!-- [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/f2PilotBE)](https://cran.r-project.org/package=f2PilotBE) -->
 <!-- [![Codecov test -->
-<!-- coverage](https://codecov.io/gh/LittlePetinga/f2PilotBE/branch/master/graph/badge.svg)](https://app.codecov.io/gh/LittlePetinga/f2PilotBE?branch=master) -->
+<!-- coverage](https://codecov.io/gh/saracarolinahenriques/f2PilotBE/branch/master/graph/badge.svg)](https://app.codecov.io/gh/saracarolinahenriques/f2PilotBE?branch=master) -->
 
 [![f2PilotBE
-badge](https://img.shields.io/badge/f2PilotBE-Ready%20to%20Use-brightgreen)](https://github.com/LittlePetinga/f2PilotBE)
+badge](https://img.shields.io/badge/f2PilotBE-Ready%20to%20Use-brightgreen)](https://github.com/saracarolinahenriques/f2PilotBE)
 [![License:
 GPL-3.0-or-later](https://img.shields.io/badge/License-GPL--3.0--or--later-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
-[![repo](https://img.shields.io/badge/Repo%20Since-Jan%202024-ffcc00)](https://github.com/LittlePetinga/f2PilotBE)
-[![Version](https://img.shields.io/badge/Version-0.3.0-00b5a3)](https://github.com/LittlePetinga/f2PilotBE)
+[![repo](https://img.shields.io/badge/Repo%20Since-Jan%202024-ffcc00)](https://github.com/saracarolinahenriques/f2PilotBE)
+[![Version](https://img.shields.io/badge/Version-0.4.0-00b5a3)](https://github.com/saracarolinahenriques/f2PilotBE)
 [![Last
-Update](https://img.shields.io/badge/Last%20Update-10%20Jul%202024-3cb371)](https://github.com/LittlePetinga/f2PilotBE)
-[![Project Status:
-Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![R-CMD-check](https://github.com/LittlePetinga/f2PilotBE/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/LittlePetinga/f2PilotBE/actions/workflows/R-CMD-check.yaml)
+Update](https://img.shields.io/badge/Last%20Update-10%20Jul%202024-3cb371)](https://github.com/saracarolinahenriques/f2PilotBE)
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![R-CMD-check](https://github.com/saracarolinahenriques/f2PilotBE/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/saracarolinahenriques/f2PilotBE/actions/workflows/R-CMD-check.yaml)
 [![Paper f2
 BE](https://img.shields.io/badge/Scientific%20Paper-Part%201-d93467)](https://doi.org/10.3390/pharmaceutics15051430)
 [![Paper f2
@@ -271,7 +272,7 @@ as:
 
 ``` r
 library(devtools)
-install_github("LittlePetinga/f2PilotBE")
+install_github("saracarolinahenriques/f2PilotBE")
 ```
 
 ### 2.2. Examples
